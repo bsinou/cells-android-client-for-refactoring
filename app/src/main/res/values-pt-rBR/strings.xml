@@ -1,0 +1,4 @@
+<resources>
+    <string name="server_url_title">Server URL</string>
+    <string name="server_url_description">Server full address with scheme and port if different of 80</string>
+</resources>

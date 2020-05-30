@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MAIN LAYOUT-->
+
+    <dimen name="action_bar_height">72dp</dimen>
+    <dimen name="action_bar_button_dim">35dp</dimen>
+
+    <!-- SEARCH-->
+
+    <!-- -->
+
+    <!-- VIEWGROUP-->
+    <dimen name="grid_cell_width">135dp</dimen>
+    <dimen name="grid_cell_height">198dp</dimen>
+    <dimen name="grid_cell_bottom_height">48dp</dimen>
+    <dimen name="grid_cell_top_height">150dp</dimen>
+    <dimen name="list_cell_height">82dp</dimen>
+    <dimen name="list_cell_width">360dp</dimen>
+    <dimen name="list_cell_icon_width_height">45dp</dimen>
+
+
+    <dimen name="account_cell_height">66dp</dimen>
+
+
+    <dimen name="grid_v_gutter">3dip</dimen>
+    <dimen name="grid_h_gutter">3dip</dimen>
+
+
+    <dimen name="list_h_gutter">0.6dp</dimen>
+    <dimen name="list_v_gutter">0.5dp</dimen>
+
+
+    <!-- POPUP-->
+    <dimen name="popup_menu_width">200dp</dimen>
+
+
+    <!-- NODE_OPTION-->
+
+    <item name="action_bar_icon_scale" format="float" type="dimen">0.6</item>
+    <item name="action_bar_home_icon_scale" format="float" type="dimen">0.8</item>
+
+
+    <!-- LOGIN-->
+
+
+    <!-- HISTORY-->
+
+    <!-- DIALOG-->
+
+    <dimen name="list_title_text_size">12sp</dimen>
+    <dimen name="list_title_margin_bottom">8dp</dimen>
+    <dimen name="list_title_margin_left">16dp</dimen>
+    <dimen name="list_title_margin_top">24dp</dimen>
+
+
+    <dimen name="settings_option_title_height">72dp</dimen>
+    <dimen name="settings_option_title_label_size">16sp</dimen>
+    <dimen name="settings_option_icon_dim">18dp</dimen>
+    <dimen name="settings_option_icon_margin_top">24dp</dimen>
+    <dimen name="settings_option_content_margin_top">16dp</dimen>
+    <dimen name="settings_option_title_label_margin_bottom">4dp</dimen>
+    <dimen name="settings_option_value_text_size">12sp</dimen>
+    <dimen name="text_button_padding_left_right">16dp</dimen>
+    <dimen name="list_item_text_margin_left">72dp</dimen>
+
+    <!-- FORM-->
+    <dimen name="form_field_text_size">16sp</dimen>
+
+
+    <!-- WORKSPACE DISPLAY -->
+    <dimen name="list_item_secondary_action_dim">20dp</dimen>
+
+    <!-- LIST-GRID ITEM  -->
+    <dimen name="list_item_top_text_size">16sp</dimen>
+    <dimen name="list_item_bottom_text_size">13sp</dimen>
+
+    <dimen name="default_spacing">16dp</dimen>
+
+
+    <dimen name="divider_height">0.6dp</dimen>
+    <dimen name="action_bar_icon_button_padding">8dp</dimen>
+    <dimen name="list_item_more_icon_dim">18dp</dimen>
+    <dimen name="form_field_icon_dim">20dp</dimen>
+
+    <dimen name="text_field_label_size">12sp</dimen>
+
+    <dimen name="big_text_field_height">72dp</dimen>
+    <dimen name="big_text_field_below_padding">2dp</dimen>
+
+
+    <dimen name="list_item_top_text_padding_bottom">2dp</dimen>
+    <dimen name="search_result_list_height">200dp</dimen>
+    <dimen name="search_layout_start_height">110dp</dimen>
+
+
+    <dimen name="action_bar_icon_margin">5dp</dimen>
+    <dimen name="list_item_icon_flag_dim">17dp</dimen>
+    <dimen name="list_item_text_margin_right">0dp</dimen>
+
+
+    <dimen name="form_section_margin_bottom">30dp</dimen>
+    <dimen name="form_title_margin_bottom">20dp</dimen>
+
+    <dimen name="bottom_shadow_dim">5dp</dimen>
+
+    <dimen name="splash_icon_width">200dp</dimen>
+    <dimen name="splash_icon_height">90dp</dimen>
+
+    <dimen name="fragment_popup_margin_top">10dp</dimen>
+
+
+    <dimen name="small_screen_width">360dp</dimen>
+    <dimen name="image_browse_max_swipe_distance">50dp</dimen>
+    <dimen name="drawer_account_icon_dim">80dp</dimen>
+    <dimen name="drawer_header_text_size">16dp</dimen>
+    <dimen name="drawer_header_height">184dp</dimen>
+    <dimen name="drawer_account_view_button_size">25dp</dimen>
+    <dimen name="empty_content_icon_dim">64dp</dimen>
+    <dimen name="empty_content_text_size">18sp</dimen>
+    <dimen name="list_menu_item_header_height">60dp</dimen>
+    <dimen name="list_menu_item_header_icon_dim">25dp</dimen>
+    <dimen name="list_menu_item_header_option_icon_dim">25dp</dimen>
+    <dimen name="browser_menu_item_height">55dp</dimen>
+    <dimen name="dialog_upload_message_text_size">14sp</dimen>
+    <dimen name="action_bar_action_icon_margin_right">4dp</dimen>
+    <dimen name="drawer_header_server_label_text_size">13dp</dimen>
+    <dimen name="config_form_title_text_size">28sp</dimen>
+    <dimen name="server_url_form_text_size">14sp</dimen>
+</resources>

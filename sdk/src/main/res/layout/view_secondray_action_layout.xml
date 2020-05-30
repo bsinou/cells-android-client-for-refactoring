@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_transparent_surface"
+    android:clickable="true"
+    android:focusable="true"
+    android:animateLayoutChanges="true"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/sync_info_layout"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:animateLayoutChanges="true"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/sync_changes_count_textview"
+            android:layout_marginLeft="20dp"
+            android:textSize="13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp" />
+
+        <ImageView
+            android:id="@+id/sync_flag"
+            android:layout_width="@dimen/list_item_secondary_action_dim"
+            android:layout_height="@dimen/list_item_secondary_action_dim"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_sync_grey600_48dp"
+            tools:ignore="ContentDescription"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/list_item_secondary_action_dim"
+        android:layout_height="@dimen/list_item_secondary_action_dim"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_dots_vertical_grey600_48dp"
+        tools:ignore="ContentDescription"/>
+
+</LinearLayout>

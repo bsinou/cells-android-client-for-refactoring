@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/quick_access"
+        android:visible="true"
+        android:title="@string/quick_access_title"
+        android:icon="@drawable/baseline_speed_black_48">
+
+        <menu android:id="@+id/quick_access_menu">
+            <item android:id="@+id/bookmarks" android:title="@string/bookmarks" android:icon="@drawable/baseline_bookmark_black_48"/>
+            <!-- <item android:id="@+id/recent" android:title="@string/recent" android:icon="@drawable/baseline_access_time_black_48"/> -->
+        </menu>
+    </item>
+
+    <item android:id="@+id/my_workspaces"
+        android:visible="true"
+        android:title="@string/workspaces_title"
+        android:icon="@drawable/ic_folder_multiple_grey600_48dp">
+
+        <menu android:id="@+id/my_workspaces_menu" >
+            <group android:id="@+id/drawer_my_workspace_section"/>
+        </menu>
+    </item>
+
+    <item android:id="@+id/shared_workspaces"
+        android:visible="true"
+        android:title="@string/shared_workspaces_title"
+        android:icon="@drawable/ic_account_group_grey600_48dp">
+
+        <menu android:id="@+id/share_workspaces_menu">
+            <group android:id="@+id/drawer_shared_workspaces_section"/>
+        </menu>
+    </item>
+
+    <group android:id="@+id/sections_category">
+        <item
+            android:id="@+id/settings"
+            android:title="@string/settings_title"
+            android:icon="@drawable/settings"/>
+
+        <item
+            android:id="@+id/clear_cache"
+            android:title="@string/clear_cache"
+            android:icon="@drawable/ic_trash_can_outline_grey600_48dp"/>
+    </group>
+
+</menu>

@@ -1,0 +1,133 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.pydio.cells.android.app"
+        minSdkVersion 29
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // TODO solve errors and get rid of this
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    // local external dependencies from libs subfolder, unused
+    // implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    // Cells: the Java SDK and the Android Client
+    implementation project(":sdk")
+    implementation "com.pydio.cells:cells-sdk-java:${rootProject.ext.cellsSdkJavaLibVersion}"
+
+    // AndroidX and JetPack to ship version 29+ code to older devices
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+
+    // For the tests
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+/*
+
+From Legacy Project
+TODO Understand and adapt
+
+android {
+    ...
+    def buildPropsFile = file('version.properties')
+    if (buildPropsFile.canRead()) {
+
+        def buildProps = new Properties()
+        buildProps.load(new FileInputStream(buildPropsFile))
+
+        def id = buildProps['id']
+        def appName = buildProps['name']
+        def vCode = buildProps['version_code']
+        def vName = buildProps['version_name']
+        def date = new Date().format("yyyy.MM.dd")
+        def apkName = appName + " " + vName + "." + vCode + "[" + date + "].apk"
+        def minSDK = buildProps["min_sdk"]
+
+        def template = System.getProperty("user.dir") + "/pydio-cells/about_template.html"
+        def aboutPath = System.getProperty("user.dir") + "/pydio-cells/src/main/assets/about.html";
+        def contents = new File(template).getText('UTF-8')
+        contents = contents.replaceAll("##APP_NAME##", appName)
+        contents = contents.replaceAll("##VERSION_NAME##", vName)
+        contents = contents.replaceAll("##VERSION_CODE##", "" + vCode)
+        contents = contents.replaceAll("##VERSION_DATE##", date)
+        def aboutFile = new File(aboutPath)
+        aboutFile.write(contents)
+
+        defaultConfig {
+            applicationId id
+            versionName vName
+            versionCode vCode as int
+            minSdkVersion minSDK
+        }
+
+        buildTypes {
+            release {
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                applicationVariants.all {
+                    variant ->
+                        variant.outputs.all {
+                            outputFileName = apkName
+                        }
+                }
+            }
+            debug {
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                applicationVariants.all {
+                    variant ->
+                        variant.outputs.all {
+                            outputFileName = apkName
+                        }
+                }
+            }
+        }
+
+        packagingOptions {
+            exclude 'META-INF/DEPENDENCIES'
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/license.txt'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/NOTICE.txt'
+            exclude 'META-INF/notice.txt'
+            exclude 'META-INF/ASL2.0'
+        }
+    }
+
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+}
+
+*/

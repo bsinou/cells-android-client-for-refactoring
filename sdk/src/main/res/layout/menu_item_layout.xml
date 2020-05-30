@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_item_menu_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/transparent2"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:id="@+id/list_item_menu_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_gravity="bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_menu_item_header_height">
+
+            <ImageView
+                android:id="@+id/header_icon"
+                android:layout_width="@dimen/list_menu_item_header_icon_dim"
+                android:layout_height="@dimen/list_menu_item_header_icon_dim"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/default_spacing"
+                android:layout_marginLeft="@dimen/default_spacing"
+                android:src="@drawable/folder"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/header_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="@dimen/default_spacing"
+                android:layout_toStartOf="@id/header_option_icon"
+                android:layout_toLeftOf="@id/header_option_icon"
+                android:layout_toEndOf="@id/header_icon"
+                android:layout_toRightOf="@id/header_icon"
+                android:text="@string/filename"
+                android:layout_marginStart="32dp" />
+
+            <ImageView
+                android:id="@+id/header_option_icon"
+                android:layout_width="@dimen/list_menu_item_header_option_icon_dim"
+                android:layout_height="@dimen/list_menu_item_header_option_icon_dim"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/default_spacing"
+                android:layout_marginRight="@dimen/default_spacing"
+                android:src="@drawable/info"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:background="@color/default_divider_color"
+            android:orientation="horizontal" />
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_view"
+            android:theme="@style/browser_menu_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

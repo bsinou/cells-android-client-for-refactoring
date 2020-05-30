@@ -1,0 +1,4 @@
+<resources>
+    <string name="server_url_title">URL du serveur</string>
+    <string name="server_url_description">Adresse du serveur avec le protocol et le port si différent de 80</string>
+</resources>

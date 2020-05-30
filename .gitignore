@@ -1,0 +1,20 @@
+# builds and gradle
+.classpath
+.gradle/
+build
+sdk/build
+sdk/libs
+sdk/.classpath
+
+
+# IDE files
+*.iml
+.settings/
+.idea/
+.project
+sdk/.project
+sdk/*.iml
+app/.project
+app/*.iml
+local.properties
+

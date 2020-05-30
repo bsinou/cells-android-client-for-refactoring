@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.6.3'
+    }
+}
+
+plugins {
+    // Publish the generated resources as Maven Artifacts
+    // See: https://docs.gradle.org/current/userguide/publishing_setup.html#publishing_overview
+    // And: https://docs.gradle.org/current/userguide/dependency_management_terminology.html#sub:terminology_component
+    id 'maven-publish'
+
+    // Push the artifact to bintray
+    // See: https://github.com/bintray/gradle-bintray-plugin
+    id 'com.jfrog.bintray' version '1.8.5'
+}
+
+// This block encapsulates custom properties and makes them available to all
+// modules in the project.
+ext {
+    bintrayUser = System.getProperty("bintray.user")
+    bintrayKey = System.getProperty("bintray.key")
+
+    githubUrl = 'https://github.com/bsinou/cells-android-client.git'
+    version = '0.1.0'
+
+    // Centralise dependency version
+    cellsSdkJavaLibVersion = "0.1.2-SNAPSHOT"
+}
+
+allprojects {
+
+    repositories {
+
+        // Typically useful when working on the Java SDK so that we can use updated code without publishing to bintray.
+        mavenLocal()
+
+        // Using both google and jcenter to resolve dependencies.
+        google()
+        jcenter()
+
+        // Also Register Pydio own repository on bintray
+        maven {
+            url "https://dl.bintray.com/pydio/cells"
+        }
+    }
+}

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="date_format">MMM dd, yyyy</string>
+    <string name="workspace_section_shared">Workspaces compartidos</string>
+    <string name="workspace_section_default">Workspaces por defecto</string>
+    <string name="share">Obtener enlace</string>
+    <string name="no_active_connection">¡No hay conexión de Internet!</string>
+    <string name="link_copied_to_clip">Enlace copiado en el portapapeles.</string>
+    <string name="empty_file_folder">Carpeta vacía</string>
+    <string name="login">Usuario</string>
+    <string name="workspaces_title">Mis workspaces</string>
+    <string name="loading">Cargando</string>
+    <string name="server_address_label">Dirección del servidor</string>
+    <string name="no_installed_app_for_send_file">No hay ninguna aplicación instalada para enviar %s</string>
+    <!-- Messages -->
+    <!-- Info -->
+    <string name="loading_workspace">Cargando datos…</string>
+    <!-- Success -->
+    <!-- Global Settings !-->
+    <string name="settings_header_security">Seguridad</string>
+    <string name="title_pin_code">Código pin</string>
+    <string name="settings_pin_text_description">Bloquear automáticamente la aplicación con un código PIN</string>
+    <string name="title_save_password">Contraseña</string>
+    <string name="settings_save_password_text_description">Guardar la contraseña al inicio de sesión</string>
+    <string name="settings_header_network">Red</string>
+    <string name="unsupported_settings_text">¡Los parámetros de configuración de abajo no están soportados aún!</string>
+    <string name="title_transfer">Tranferencias</string>
+    <string name="settings_transfer_text_description">Permitir la transmisión de datos en su conexión de móvil</string>
+    <string name="title_image_cache">Thumbnails</string>
+    <string name="settings_thumbnail_text_description">Cargar thumbnails en la red de telefonía móvil</string>
+    <string name="settings_header_cache">Caché</string>
+    <string name="title_cache_size">Tamaño límite de la caché</string>
+    <string name="title_cache_prune_period">Depurar la caché cada</string>
+    <string name="settings_header_backup">Copias de seguridad</string>
+    <string name="settings_backup_description">Configure copias de seguridad automáticas de sus archivos seleccionando el servidor y las opciones de frecuencia.</string>
+    <string name="settings_title">Configuración</string>
+    <string name="settings_refresh_server_description">Recargar la conexión del servidor, el soporte y los datos de estilo personalizados. Los datos de estilo se aplicarán una vez que se reinicie la aplicación</string>
+    <string name="settings_refresh_server_title">Datos del servidor</string>
+    <string name="configure_backup">Configurar las copias de seguridad</string>
+    <!-- Errors -->
+    <string name="failed_to_get_file_content">Error al acceder al contenido del archivo</string>
+    <string name="failed_to_upload_file">Error al subir %s</string>
+    <string name="no_installed_app_for_open">No hay ninguna aplicación disponible para abrir este archivo</string>
+    <string name="unable_to_create_file_on_sd_card">No es posible crear el archivo en el dispositivo</string>
+    <!-- Layouts -->
+    <!-- Copy / Move -->
+    <!-- Select files -->
+    <string name="remove">Eliminar</string>
+    <!-- Search files -->
+    <string name="search_text_label">Texto para buscar</string>
+    <!-- Dialogs -->
+    <!-- Create Folder -->
+    <string name="new_folder">Nueva carpeta</string>
+    <!-- Create File -->
+    <string name="create_file">Crear archivo</string>
+    <!-- Download File -->
+    <!-- Pin Code -->
+    <!-- Delete File -->
+    <!-- Nav Bar -->
+    <!-- Add Button -->
+    <string name="folder">Carpeta</string>
+    <!-- More Button -->
+    <string name="search">Buscar</string>
+    <!-- Detail item Page -->
+    <string name="download">Descargar</string>
+    <string name="send">Enviar</string>
+    <string name="rename">Renombrar</string>
+    <string name="delete">Eliminar</string>
+    <string name="refresh">Refrescar</string>
+    <string name="offline">Mantener Offline</string>
+    <string name="password_label">Restringir el acceso mediante contraseña</string>
+    <string name="generate_link">Generar</string>
+    <!-- Server settings page -->
+    <string name="server_address_hint">Dirección del servidor</string>
+    <string name="connect_as">Conectarse como</string>
+    <string name="password_hint">Contraseña</string>
+    <!-- Global Settings !-->
+    <string-array name="size_unit">
+        <item>Bytes</item>
+        <item>KB</item>
+        <item>MB</item>
+        <item>GB</item>
+        <item>TB</item>
+    </string-array>
+    <string name="select_workspace">Seleccione un workspace</string>
+    <string name="no_item_selected">No se ha seleccionado ningún elemento</string>
+    <string name="shared_workspaces_title">Compartido conmigo</string>
+    <string name="add">Añadir</string>
+    <string name="grid">Mostrar la Parrilla</string>
+    <string name="list">Mostrar la Lista</string>
+    <string name="failed_to_get_folder_content">Error al acceder al contenido %s</string>
+    <string name="last_edit_time_ago">Hace __TIME__</string>
+    <string name="few_seconds">algunos segundos</string>
+    <string name="number_of_min">__NUMBER__ minutos</string>
+    <string name="number_of_hour">__NUMBER__ horas</string>
+    <string name="number_of_day">__NUMBER__ días</string>
+    <string name="number_of_month">__NUMBER__ meses</string>
+    <string name="filename">Nombre del archivo</string>
+    <string name="upload_shoot">Desde la cámara</string>
+    <string name="upload">Subir</string>
+    <string name="manually_grant_storage_access">Autorice a Pydio a acceder a su sistema de almacenamiento</string>
+    <string name="manually_grant_camera_access">Autorice a Pydio a acceder a su cámara</string>
+    <string name="unable_to_share_file_with_camera">La app no ha podido compartir el archivo con la cámara</string>
+    <string name="cells_litst_title">Celdas</string>
+    <string name="default_welcome_message">Bienvenido a %s</string>
+    <string name="empty_content_text">Vaciar contenido</string>
+    <string name="no_workspace_selected">No se ha seleccionado ningún workspace</string>
+    <string name="add_files">Añadir archivos</string>
+    <string name="copy_link">Copiar el enlace</string>
+    <string name="import_files">Importar archivos</string>
+    <string name="will_be_moved_in_trash">%s será eliminado</string>
+    <string name="will_be_permanently_deleted">%s será eliminado permanentemente</string>
+    <string name="remove_folder">Eliminar carpeta</string>
+    <string name="remove_file">Eliminar archivo</string>
+    <string name="accept_certificate">Aceptar certificado</string>
+    <string name="create">Crear</string>
+    <string name="clear_cache">Limpiar la caché del workspace</string>
+    <string name="offline_deleted">La versión offline ha sido eliminada</string>
+    <string name="preparing">Preparando…</string>
+    <string name="delete_link">Eliminar enlace</string>
+    <string name="link_copy_failed">Error al copiar el enlace</string>
+    <string name="new_account">Nueva cuenta</string>
+    <string name="loading_account">Cargando cuenta…</string>
+    <string name="sort_by_modif">Fecha de modificación</string>
+    <string name="sort_by_size">Tamaño</string>
+    <string name="server_url_required">Se requiere la URL del servidor</string>
+    <string name="connect">Conectarse</string>
+    <string name="link_password">Es necesaria contraseña para acceder</string>
+    <string name="failed_to_get_download_url">Error al acceder a la URL de descarga</string>
+    <string name="failed_to_load_account">Error al cargar los datos de la cuenta</string>
+    <string name="upload_not_authorized">No está autorizado a añadir/crear contenidos en este workspace</string>
+    <string name="add_server">Añadir una cuenta</string>
+    <string name="field_required">Campo obligatorio</string>
+    <string name="account_will_be_removed">La cuenta %s se eliminará definitivamente</string>
+    <string name="remove_account">Eliminar cuenta</string>
+    <string name="server_url_form_text">Introduzca la dirección de su servidor Pydio Cells</string>
+    <string name="user_credentials_text_size">Introduzca sus credenciales</string>
+    <string name="account_management_activity_title">Gestionar cuentas</string>
+    <string name="download_on_cellular">¿Descargar %s de %s utilizando conexión de datos del móvil?</string>
+    <string name="unknwon_size">tamaño desconocido</string>
+    <string name="download_on_cellular_not_allow">La descarga mediante conexión de datos de móvil no está habilitada. Habilítela en los ajustes de configuración</string>
+    <string name="upload_on_cellular_data">Subir utilizando conexión de datos del móvil</string>
+    <string name="pydio_8_not_supported">La versión 8 de Pydio Server ya no está soportada</string>
+    <string name="server_con_failed">Error al conectar con el servidor</string>
+    <string name="server_ssl_error">ha ocurrido un error SSL</string>
+    <string name="authentication_failed">Error de autenticación</string>
+    <string name="captcha_hint">Introduzca el texto dentro de la imagen</string>
+    <string name="submit">Enviar</string>
+    <string name="getting_authentication_info_failed">Imposible acceder a la información de autenticación</string>
+    <string name="could_not_verify_cert">Imposible verificar el certificado del servidor</string>
+    <string name="server_certificate">Certificado del servidor</string>
+    <string name="enterprise_id_title">ID corporativa</string>
+    <string name="enterprise_id_hint">ex: pydio</string>
+    <string name="enterprise_id_form_text">Introduzca su ID corporativa</string>
+    <string name="restore">Restaurar</string>
+    <string name="failed_to_restore_the_file">Error al restaurar el archivo</string>
+    <string name="file_restored">Archivo restaurado</string>
+    <string name="failed_to_empty_recycle_bin">Error al vaciar la papelera de reciclaje</string>
+    <string name="empty_recycle">Vaciar</string>
+    <string name="failed_to_load_share_link">Error al cargar el enlace compartido %s</string>
+    <string name="failed_to_delete_files">Error al eliminar los archivos</string>
+    <string name="selected_files">archivos seleccionados</string>
+    <string name="close">Cerrar</string>
+    <string name="selected_count">seleccionado(s) %d elemento(s)</string>
+    <string name="failed_to_download_file">Error al descargar %s</string>
+    <string name="file_downloaded">%s ha sido descargado</string>
+    <string name="save">Guardar Archivo</string>
+    <string name="failed_to_rename_file">Error al renombrar el archivo %s como %s</string>
+    <string name="file_renamed">Se ha renombrado %s como %s</string>
+    <string name="failed_to_delete_share_link">Error al eliminar el enlace de compartición</string>
+    <string name="failed_to_delete_file">Error al eliminar %s</string>
+    <string name="file_deleted">%s ha sido eliminado</string>
+    <string name="recycle_cleared">Se ha vaciado la papelera de reciclaje</string>
+    <string name="download_title">Descargando</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="recent">Recent files</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="public_link">Public link</string>
+</resources>

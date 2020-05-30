@@ -1,2 +1,3 @@
-# cells-android-client
-Connect to your Pydio Cells server from your Android device  
+# Cells client for Android
+
+Connect to your Pydio Cells server from your Android device

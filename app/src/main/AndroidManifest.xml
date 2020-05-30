@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:targetSandboxVersion="1"
+    package="com.pydio.cells.android.app">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        tools:replace="android:name"
+        android:name="com.pydio.cells.android.app.CellsApplication"
+        android:usesCleartextTraffic="true"
+        android:icon="@drawable/ic_launcher_app"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:theme="@style/AppTheme"
+            android:noHistory="true"
+            android:name="com.pydio.cells.android.app.StartActivity"
+            android:label="@string/app_name" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <data android:scheme="ajxpserver"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+
+            <intent-filter>
+                <data android:scheme="ajxpservers"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.pydio.android.client.gui.activities.MediaViewer"/>
+        <activity android:name="com.pydio.android.client.gui.activities.ServerURL"/>
+        <activity android:name="com.pydio.android.client.gui.activities.Browser"/>
+        <activity android:name="com.pydio.android.client.gui.activities.PydioActivity"/>
+        <activity android:name="com.pydio.android.client.gui.activities.PydioDrawerActivity"/>
+        <activity android:name="com.pydio.android.client.gui.activities.UserCredentials"/>
+        <activity android:name="com.pydio.android.client.gui.activities.Accounts"/>
+        <activity android:name="com.pydio.android.client.gui.activities.Settings"/>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.pydio.android.cells.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/shared_paths"/>
+        </provider>
+
+        <meta-data android:name="android.content.RestrictionsManager"
+            android:resource="@xml/app_restrictions" />
+
+
+        <activity android:name="com.pydio.android.client.gui.activities.CellsAuthenticationCallbackURLActivity">
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="cellsauth" android:host="callback"/>
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

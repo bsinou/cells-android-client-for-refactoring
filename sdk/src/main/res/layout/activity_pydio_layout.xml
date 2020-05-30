@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pydio_activity_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="false"
+        android:layout_marginTop="@dimen/action_bar_height"
+        android:orientation="vertical">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_spacing"
+            android:tint="@color/white"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/add"
+            android:layout_margin="16dp" />
+    </FrameLayout>
+
+    <include layout="@layout/toolbar_custom_layout"/>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:id="@+id/menu_page"
+        android:visibility="gone"
+        android:clickable="true"
+        android:longClickable="true"
+        android:background="@color/transparent"
+        android:layout_marginTop="@dimen/action_bar_height"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true">
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/popup_menu"
+            android:layout_width="@dimen/popup_menu_width"
+            android:layout_marginTop="@dimen/fragment_popup_margin_top"
+            android:layout_height="wrap_content"
+            android:background="@color/white1"
+            android:orientation="vertical">
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

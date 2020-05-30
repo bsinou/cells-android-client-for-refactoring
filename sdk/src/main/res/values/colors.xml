@@ -1,0 +1,56 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#607d8b</color>
+    <color name="colorPrimaryDark">#34515e</color>
+    <color name="colorAccent">@color/main_color</color>
+    <!-- PALETTE -->
+    <color name="black0">#eeeeee</color>
+    <color name="black1">#9E9E9E</color>
+    <color name="black2">#808080</color>
+    <color name="black3">#666666</color>
+    <color name="black4">#444444</color>
+    <color name="black5">#424242</color>
+    <color name="black6">#333333</color>
+    <color name="white">#ffffff</color>
+    <color name="white0">#fcfcfc</color>
+    <color name="white1">#f8f8f8</color>
+    <color name="white2">#e8e8e8</color>
+    <color name="orange1">#FB725C</color>
+    <color name="green1">#4ACEB0</color>
+    <color name="green2">#00A790</color>
+    <color name="android_green">#a4c639</color>
+    <color name="android_yellow">#fff176</color>
+    <color name="android_yellow2">#fff9c4</color>
+    <color name="blue3" tools:ignore="UnusedResources">#145170</color>
+    <color name="brown2" tools:ignore="UnusedResources">#D7A76A</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent1">#02000000</color>
+    <color name="transparent2">#44000000</color>
+    <color name="material_red">#F44336</color>
+    <color name="material_indigo">#3F51B5</color>
+    <color name="material_blue">#2196F3</color>
+    <color name="material_green">#4CAF50</color>
+    <color name="material_orange">#FF9800</color>
+    <color name="material_deep_orange">#FF5722</color>
+    <color name="material_blue_grey">#607D8B</color>
+    <color name="splash_version_text_color">@color/white1</color>
+    <color name="main_color">@color/material_blue_grey</color>
+    <color name="main_color_dark">@color/pydio_orange_dark</color>
+    <color name="pydio_orange_dark">#E66052</color>
+    <color name="list_item_top_text_color">@color/black5</color>
+    <color name="list_item_bottom_text_color">@color/black1</color>
+    <color name="icon_color_filter">#5c7784</color>
+    <color name="selected_background">@color/transparent2</color>
+    <color name="progress_bar_color">@color/green2</color>
+    <color name="progress_bar_color_light">@color/green1</color>
+    <color name="action_bar_item_selected_background_color">@color/selected_background</color>
+    <color name="action_bar_icon_color">@color/white</color>
+    <color name="spinner_text_color">@color/black4</color>
+    <color name="secondary_action_icon_color_filter">@color/black1</color>
+    <color name="default_divider_color">@color/white2</color>
+    <color name="form_field_icon_tint_color">@color/black1</color>
+    <color name="status_bar_color">@color/main_color</color>
+    <color name="contained_list_background_color">@color/white1</color>
+    <color name="settings_description_color">@color/black2</color>
+    <color name="settings_option_icon_tint">@color/black2</color>
+    <color name="active_view">#edf0f2</color>
+</resources>

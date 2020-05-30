@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/status_layout"
+    android:background="@color/contained_list_background_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:padding="@dimen/default_spacing"
+    android:focusable="true">
+
+    <TextView
+        android:id="@+id/empty_content_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/black0"
+        android:text="@string/empty_content_text"
+        android:textStyle="bold"
+        android:textSize="@dimen/empty_content_text_size" />
+
+    <ImageView
+        android:src="@drawable/ic_folder_outline_grey600_48dp"
+        android:id="@+id/empty_content_icon"
+        android:tint="@color/black0"
+        android:layout_width="@dimen/empty_content_icon_dim"
+        android:layout_height="@dimen/empty_content_icon_dim"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:id="@+id/empty_content_button"
+        android:text="@string/add"
+        android:layout_margin="@dimen/default_spacing"
+        android:paddingLeft="@dimen/default_spacing"
+        android:paddingRight="@dimen/default_spacing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/main_color"
+        style="?android:attr/borderlessButtonStyle"
+        tools:ignore="ContentDescription" />
+
+</LinearLayout>

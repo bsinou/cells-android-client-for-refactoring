@@ -1,0 +1,162 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+// Insure that transitive dependencies are included in the published artifact
+// See https://github.com/bintray/gradle-bintray-plugin#step-7-define-artifacts-to-be-uploaded-to-bintray
+// apply 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.pydio.cells:cells-sdk-java:${rootProject.ext.cellsSdkJavaLibVersion}"
+
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.16.12'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+android {
+
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        minSdkVersion 29
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            versionNameSuffix = '-dev'
+        }
+    }
+}
+
+// Because the components are created only during the afterEvaluate phase, you must
+// configure your publications using the afterEvaluate() lifecycle method.
+afterEvaluate {
+    publishing {
+        publications {
+
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.release
+
+                groupId 'com.pydio.cells'
+                artifactId 'cells-sdk-android'
+//                version = rootProject.ext.version
+                version '0.1.1'
+
+/*
+                pom.withXml {
+                    def root = asNode()
+                    root.appendNode('description', 'The Cells SDK for Android provides Android specific libraries on top of the Cells SDK for Java.')
+                    root.appendNode('name', 'Cells SDK for Android')
+                    root.appendNode('url', 'https://pydio.com')
+                    root.children().last() + pomConfig
+                }
+*/
+
+            }
+
+            // Creates a Maven publication called “debug”.
+            debug(MavenPublication) {
+                // Applies the component for the debug build variant.
+                from components.debug
+
+                groupId 'com.pydio.cells'
+                artifactId 'cells-sdk-android'
+                version '0.1.1-dev'
+//                version = rootProject.ext.version + '-dev'
+            }
+        }
+    }
+}
+
+// Pre-create the pom configuration:
+def pomConfig = {
+    licenses {
+        license {
+            name "GNU AFFERO GENERAL PUBLIC LICENSE v3"
+            url "https://www.gnu.org/licenses/agpl-3.0.en.html"
+            distribution "repo"
+        }
+    }
+
+    developers {
+        developer {
+            id "cdujeu"
+            name "Charles du Jeu"
+            email "charles@ajaxplorer.info"
+        }
+
+        developer {
+            id "jabarkarim"
+            name "Jabar Karim"
+            email "jabar@ajaxplorer.info"
+        }
+
+        developer {
+            id "bsinou"
+            name "Bruno Sinou"
+            email "bruno.sinou@posteo.de"
+        }
+    }
+
+    scm {
+        url githubUrl
+    }
+}
+
+bintray {
+    user = bintrayUser
+    key = bintrayKey
+
+    pkg {
+        repo = 'cells'
+        name = rootProject.name
+        licenses = ['AGPL-V3']
+        desc = 'The Cells SDK for Android provides Android specific libraries on top of the Cells SDK for Java.'
+        vcsUrl = githubUrl
+        websiteUrl = "https://pydio.com"
+        publish = true
+
+
+        // Version info
+        version {
+            name = rootProject.ext.version
+            desc = 'Refactor project: clean module, use latest gradle best practice...'
+            released = new Date()
+            vcsTag = 'v' + rootProject.ext.version
+            //attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+        publications = ['release'] //, 'Sandbox'
+    }
+}

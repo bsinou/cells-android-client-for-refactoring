@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/main_color"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/drawer_header_height"
+    android:gravity="bottom">
+
+    <LinearLayout
+        android:id="@+id/top_view"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/list_cell_height"
+        android:layout_width="match_parent"
+        android:gravity="left|center_vertical"
+        tools:ignore="RtlHardcoded">
+
+        <com.pydio.android.client.gui.view.RoundedImageView
+            android:id="@+id/account_icon"
+            android:layout_width="@dimen/drawer_account_icon_dim"
+            android:layout_height="@dimen/drawer_account_icon_dim"
+            android:src="@drawable/person"
+            android:background="@drawable/circle_background"
+            android:layout_marginLeft="@dimen/default_spacing"
+            android:layout_marginStart="@dimen/default_spacing"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_height="@dimen/list_cell_height"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:id="@+id/account_text_layout"
+            android:layout_toLeftOf="@+id/switch_account_button"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/default_spacing"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@+id/switch_account_button"
+            android:layout_marginStart="@dimen/default_spacing">
+
+            <TextView
+                android:text="@string/login"
+                android:textColor="@color/white"
+                android:textSize="@dimen/drawer_header_text_size"
+                android:layout_marginLeft="@dimen/action_bar_icon_margin"
+                android:id="@+id/account_main_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/action_bar_icon_margin"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:text="@string/password_label"
+                android:id="@+id/account_second_text"
+                android:textSize="@dimen/drawer_header_server_label_text_size"
+                android:layout_marginLeft="@dimen/action_bar_icon_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="SpUsage"
+                android:layout_marginStart="@dimen/action_bar_icon_margin" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/switch_account_button"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/logout_layout"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/action_bar_item_background"
+            tools:ignore="ContentDescription"
+            android:focusable="true"
+            android:layout_toStartOf="@+id/logout_layout">
+
+            <ImageView
+                android:id="@+id/switch_account_icon"
+                android:tint="@color/white"
+                android:layout_margin="@dimen/default_spacing"
+                android:src="@drawable/ic_account_switch_grey600_48dp"
+                android:layout_width="@dimen/drawer_account_view_button_size"
+                android:layout_height="@dimen/drawer_account_view_button_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/logout_layout"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/action_bar_item_background"
+            tools:ignore="ContentDescription"
+            android:layout_alignParentEnd="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/logout_icon"
+                android:tint="@color/white"
+                android:layout_margin="@dimen/default_spacing"
+                android:src="@drawable/logout"
+                android:layout_width="@dimen/drawer_account_view_button_size"
+                android:layout_height="@dimen/drawer_account_view_button_size" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

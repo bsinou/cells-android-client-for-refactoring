@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <string name="app_name" translatable="false">Pydio Cells</string>
+    <string name="date_format">MMM dd, yyyy</string>
+
+    <string name="workspace_section_shared">Shared workspaces</string>
+    <string name="workspace_section_default">Default workspaces</string>
+
+    <string name="splash_foot" translatable="false">© Abstrium SAS 2019</string>
+
+
+    <string name="tag_share" translatable="false">share</string>
+    <string name="tag_unshare" translatable="false">share</string>
+
+    <string name="share">Get link</string>
+
+    <string name="no_active_connection">No internet connection!</string>
+    <string name="link_copied_to_clip">Link copied to clipboard.</string>
+    <string name="tag_more" translatable="false">more</string>
+    <string name="empty_file_folder">Empty folder</string>
+
+    <string name="login">Login</string>
+    <string name="workspaces_title">My workspaces</string>
+    <string name="quick_access_title">Quick access</string>
+
+    <string name="loading">Loading</string>
+    <string name="server_address_label">Server address</string>
+    <string name="no_installed_app_for_send_file">There is no installed app to send %s</string>
+
+    <!-- Messages -->
+    <!-- Info -->
+    <string name="loading_workspace">Loading data…</string>
+
+    <!-- Success -->
+    <!-- Global Settings !-->
+    <string name="settings_header_security">Security</string>
+    <string name="title_pin_code">Pin code</string>
+    <string name="settings_pin_text_description">Automatically lock the application with a PIN code</string>
+    <string name="title_save_password">Password</string>
+    <string name="settings_save_password_text_description">Save password at login</string>
+    <string name="settings_header_network">Network</string>
+    <string name="unsupported_settings_text">Settings below are not supported yet!</string>
+    <string name="title_transfer">Transfers</string>
+    <string name="settings_transfer_text_description">Allow transfers on cellular network</string>
+    <string name="title_image_cache">Thumbnails</string>
+    <string name="settings_thumbnail_text_description">Load thumbnails on cellular network</string>
+    <string name="settings_header_cache">Cache</string>
+    <string name="title_cache_size">Cache limit size</string>
+    <string name="title_cache_prune_period">Prune cache every</string>
+    <string name="settings_header_backup">Backup</string>
+    <string name="settings_backup_description">Set automatic backups of your files by selecting the server, then setting the frequency.</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_refresh_server_description">Reload the server connection, the support and the custom style data. Style data will be applied after the application restart</string>
+    <string name="settings_refresh_server_title">Server data</string>
+    <string name="configure_backup">Configure backup</string>
+    <!-- Errors -->
+
+
+    <string name="failed_to_get_file_content">Failed to get file content</string>
+    <string name="failed_to_upload_file">Failed to upload %s</string>
+    <string name="no_installed_app_for_open">There is no application available to open this file</string>
+    <string name="unable_to_create_file_on_sd_card">Unable to create file on device</string>
+
+    <!-- Layouts -->
+    <!-- Copy / Move -->
+
+    <!-- Select files -->
+    <string name="remove">Remove</string>
+
+    <!-- Search files -->
+    <string name="search_text_label">Text to search on</string>
+
+    <!-- Dialogs -->
+    <!-- Create Folder -->
+    <string name="new_folder">New folder</string>
+    <!-- Create File -->
+    <string name="create_file">Create file</string>
+    <!-- Download File -->
+    <!-- Pin Code -->
+    <!-- Delete File -->
+
+
+    <!-- Nav Bar -->
+    <!-- Add Button -->
+    <string name="tag_folder" translatable="false">folder</string>
+    <string name="folder">Folder</string>
+    <string name="tag_camera" translatable="false">camera</string>
+    <!-- More Button -->
+    <string name="tag_search" translatable="false">search</string>
+    <string name="search">Search</string>
+
+    <!-- Detail item Page -->
+    <string name="tag_download" translatable="false">download</string>
+    <string name="download">Download</string>
+    <string name="tag_send" translatable="false">send</string>
+    <string name="send">Send</string>
+    <string name="tag_rename" translatable="false">rename</string>
+    <string name="rename">Rename</string>
+    <string name="tag_delete" translatable="false">delete</string>
+    <string name="delete">Delete</string>
+    <string name="tag_refresh" translatable="false">refresh</string>
+    <string name="refresh">Refresh</string>
+
+    <string name="offline">Keep Offline</string>
+
+    <string name="password_label">Restrict access with password</string>
+    <string name="generate_link">Generate</string>
+
+
+    <!-- Server settings page -->
+    <string name="server_address_hint">Server address</string>
+    <string name="pre_filled_server_address" translatable="false">https://</string>
+    <string name="connect_as">Connect as</string>
+    <string name="password_hint">Password</string>
+
+
+    <!-- Global Settings !-->
+
+    <string-array name="size_unit">
+        <item>B</item>
+        <item>KB</item>
+        <item>MB</item>
+        <item>GB</item>
+        <item>TB</item>
+    </string-array>
+
+    <string name="select_workspace">Please select a workspace</string>
+
+    <string name="no_item_selected">No item selected</string>
+    <string name="file_provider_authority" translatable="false">com.pydio.android.client.FileProvider</string>
+    <string name="shared_workspaces_title">Shared with me</string>
+    <string name="add">Add</string>
+    <string name="tag_list" translatable="false">list</string>
+    <string name="tag_grid" translatable="false">grid</string>
+    <string name="grid">Display Grid</string>
+    <string name="list">Display List</string>
+    <string name="failed_to_get_folder_content">Failed to get %s content</string>
+    <string name="last_edit_time_ago">__TIME__ ago</string>
+    <string name="few_seconds">few seconds</string>
+    <string name="number_of_min">__NUMBER__ minutes</string>
+    <string name="number_of_hour">__NUMBER__ hours</string>
+    <string name="number_of_day">__NUMBER__ days</string>
+    <string name="number_of_month">__NUMBER__ months</string>
+    <string name="tag_size" translatable="false">size</string>
+    <string name="tag_type" translatable="false">type</string>
+    <string name="tag_modified" translatable="false">modified</string>
+    <string name="tag_filename" translatable="false">filename</string>
+    <string name="filename">Filename</string>
+    <string name="upload_shoot">From camera</string>
+    <string name="tag_upload" translatable="false">upload</string>
+    <string name="tag_mkdir" translatable="false">mkdir</string>
+    <string name="upload">Upload</string>
+    <string name="manually_grant_storage_access">Please allow Pydio to access your storage</string>
+    <string name="manually_grant_camera_access">Please allow Pydio to access your camera</string>
+    <string name="unable_to_share_file_with_camera">The app failed to share file with the camera</string>
+    <string name="cells_litst_title">Cells</string>
+    <string name="default_welcome_message">Welcome to %s</string>
+    <string name="empty_content_text">Empty content</string>
+    <string name="no_workspace_selected">No workspace selected</string>
+    <string name="add_files">Add files</string>
+    <string name="tag_offline" translatable="false">offline</string>
+    <string name="copy_link">Copy</string>
+    <string name="tag_copy_link" translatable="false">copy_link</string>
+    <string name="import_files">Import files</string>
+    <string name="will_be_moved_in_trash">%s will be removed</string>
+    <string name="will_be_permanently_deleted">%s will be permanently deleted</string>
+    <string name="remove_folder">Remove folder</string>
+    <string name="remove_file">Remove file</string>
+    <string name="accept_certificate">Accept certificate</string>
+    <string name="create">Create</string>
+    <string name="tag_import" translatable="false">import</string>
+    <string name="clear_cache">Clear workspace cache</string>
+    <string name="offline_deleted">The offline version has been deleted</string>
+    <string name="preparing">Preparing…</string>
+    <string name="delete_link">Delete link</string>
+    <string name="link_copy_failed">Failed to copy link</string>
+    <string name="new_account">New account</string>
+    <string name="loading_account">Loading account…</string>
+    <string name="sort_by_modif">Modification date</string>
+    <string name="sort_by_size">Size</string>
+    <string name="server_url_required">The sever URL is required</string>
+    <string name="connect">Connect</string>
+    <string name="link_password">Require password for access</string>
+    <string name="failed_to_get_download_url">Failed to get the download URL</string>
+    <string name="failed_to_load_account">Failed to load account data</string>
+    <string name="upload_not_authorized">You are not authorized to add/create content in this workspace</string>
+    <string name="add_server">Add an account</string>
+    <string name="field_required">Field is required</string>
+    <string name="account_will_be_removed">%s account will be permanently removed</string>
+    <string name="remove_account">Remove account</string>
+    <string name="server_url_form_text">Enter the location of your Pydio Cells server</string>
+    <string name="user_credentials_text_size">Please provide your credentials</string>
+    <string name="account_management_activity_title">Manage accounts</string>
+    <string name="download_on_cellular">Download %s of %s with cellular data?</string>
+    <string name="unknwon_size">unknow size</string>
+    <string name="download_on_cellular_not_allow">Download on cellular data is not allowed. Please enable it in settings</string>
+
+
+    <string name="upload_on_cellular_data">Upload on cellular data</string>
+    <string name="pydio_8_not_supported">Pydio server version 8 not supported yet</string>
+    <string name="server_con_failed">Failed to connect to server</string>
+    <string name="server_ssl_error">an SSL error occurred</string>
+    <string name="authentication_failed">Authentication failed</string>
+    <string name="captcha_hint">Enter the text within the picture</string>
+    <string name="submit">Submit</string>
+    <string name="getting_authentication_info_failed">Unable to get authentication info</string>
+    <string name="could_not_verify_cert">Unable to verify server certificate</string>
+    <string name="server_certificate">Server certificate</string>
+    <string name="enterprise_id_title">Enterprise ID</string>
+    <string name="enterprise_id_hint">ex: pydio</string>
+    <string name="enterprise_id_form_text">Enter your enterprise ID</string>
+    <string name="tag_clear_recycle" translatable="false">clear_recycle</string>
+    <string name="tag_restore" translatable="false">restore</string>
+    <string name="restore">Restore</string>
+    <string name="failed_to_restore_the_file">Failed to restore the file</string>
+    <string name="file_restored">File restored</string>
+    <string name="failed_to_empty_recycle_bin">Failed to empty the recycle bin</string>
+    <string name="empty_recycle">Empty</string>
+    <string name="failed_to_load_share_link">Failed to load %s shared link</string>
+    <string name="failed_to_delete_files">Failed to delete files</string>
+    <string name="selected_files">selected files</string>
+    <string name="tag_close" translatable="false">close</string>
+    <string name="close">Close</string>
+    <string name="selected_count">%d item selected</string>
+    <string name="failed_to_download_file">Failed to download %s</string>
+    <string name="file_downloaded">%s downloaded</string>
+    <string name="save">Save File</string>
+    <string name="tag_save" translatable="false">save</string>
+    <string name="failed_to_rename_file">Failed to rename file %s to %s</string>
+    <string name="file_renamed">%s renamed to %s</string>
+    <string name="failed_to_delete_share_link">Failed to delete share link</string>
+    <string name="failed_to_delete_file">Failed to delete %s</string>
+    <string name="file_deleted">%s has been deleted</string>
+    <string name="recycle_cleared">The recycle has been emptied</string>
+    <string name="download_title">Downloading</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="recent">Recent files</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="tag_bookmark" translatable="false">bookmark</string>
+    <string name="public_link">Public link</string>
+    <string name="tag_public_link" translatable="false">public_link</string>
+    <string name="tag_move" translatable="false">move</string>
+    <string name="tag_copy" translatable="false">copy</string>
+    <string name="options">Options</string>
+    <string name="copy">Copy to</string>
+    <string name="move">Move to</string>
+    <string name="delete_selection">Delete all selected files</string>
+    <string name="skip_paste">Skip paste</string>
+    <string name="exit_paste_message">Skip paste?</string>
+    <string name="cancel">Cancel</string>
+    <string name="move_to">Move to %s</string>
+    <string name="copy_to">copy to %s</string>
+    <string name="files_moved_to">Files moved to %s</string>
+    <string name="failed_to_move_files">Failed to move files</string>
+    <string name="files_copied_to">Files copied to %s</string>
+    <string name="failed_to_copy_files">Failed to copy files</string>
+    <string name="selected_files_deleted">Selected files have been deleted</string>
+    <string name="file_unbookmarked">%s removed from bookmarks</string>
+    <string name="file_bookmarked">%s added to bookmarks</string>
+    <string name="share_link">Share link</string>
+    <string name="disable">Disable</string>
+    <string name="could_not_get_token">Could not get authentication info</string>
+    <string name="could_not_decode_id_token">Could not decode token</string>
+
+</resources>

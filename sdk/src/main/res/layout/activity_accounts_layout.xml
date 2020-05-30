@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/contained_list_background_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_marginTop="88dp"
+        android:layout_marginLeft="@dimen/default_spacing"
+        android:layout_marginRight="@dimen/default_spacing"
+        android:background="@color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/default_spacing"
+        android:padding="@dimen/default_spacing"
+        android:src="@drawable/account_plus"
+        android:tint="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="RtlHardcoded" />
+
+
+    <LinearLayout
+        android:layout_gravity="top"
+        android:background="@drawable/bottom_shadowed"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="@dimen/action_bar_height">
+
+        <TextView
+            android:id="@+id/welcome_message_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_spacing"
+            android:layout_marginLeft="@dimen/default_spacing"
+            android:text="@string/account_management_activity_title"
+            android:textColor="@color/spinner_text_color"
+            android:textSize="@dimen/config_form_title_text_size" />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,15 @@
+/* Insure the name stays constants, even if the root directory name changes */
+rootProject.name = 'cells-android-client'
+rootProject.buildFileName = 'build.gradle'
+
+def timestamp = new Date().format( 'yyyyMMddHHmm' )
+println('[DEBUG] Starting init phase for ' + rootProject.name + ' at ' + timestamp)
+
+include ':sdk', ':app'
+
+/* Use custom names for the "build.gradle" file of child modules */
+rootProject.children.each {
+    it.buildFileName = it.name + '.gradle'
+    //println('[DEBUG] New build.gradle build script file name: ' + it.buildFileName)
+}
+
