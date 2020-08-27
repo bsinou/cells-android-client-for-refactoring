@@ -30,7 +30,8 @@ ext {
     version = '0.1.0'
 
     // Centralise dependency version
-    cellsSdkJavaLibVersion = "0.1.2-SNAPSHOT"
+    // cellsSdkJavaLibVersion = "0.1.3-dev.20200826"
+    cellsSdkJavaLibVersion = "0.1.3-SNAPSHOT"
 }
 
 allprojects {

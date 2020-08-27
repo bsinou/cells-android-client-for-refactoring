@@ -1,4 +1,4 @@
-package com.pydio.cells.android.app;
+package com.pydio.android.cells;
 
 import com.pydio.android.client.data.Application;
 import com.pydio.android.client.gui.activities.ServerURL;

@@ -1,4 +1,4 @@
-package com.pydio.cells.android.app;
+package com.pydio.android.cells;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
