@@ -232,7 +232,7 @@ public class PydioAgent {
                     c.onComplete(nodes, null);
 
                 } catch (SDKException e) {
-                    if(e.code == 401) {
+                    if (e.code == Code.authentication_required || e.code == Code.authentication_with_captcha_required) {
                         if (!this.session.server.supportsOauth()) {
                             Database.deleteToken(session.tokenKey());
                         }
@@ -240,12 +240,13 @@ public class PydioAgent {
                             client.ls(ws, folder, nodes::add);
                             c.onComplete(nodes, null);
                         } catch (SDKException e1) {
-                            c.onComplete(null, Error.fromException(e));
+                            c.onComplete(null, Error.fromException(e1));
                         }
                         return;
                     }
                     c.onComplete(null, Error.fromException(e));
                 }
+
             } else {
                 String offlinePath = session.workspacePath(ws);
                 File folderFile = new File(offlinePath + folder);
