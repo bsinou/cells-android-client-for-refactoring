@@ -112,6 +112,7 @@ public class ServerURL extends AppCompatActivity implements AuthenticationEventH
     @Override
     protected void onStart() {
         super.onStart();
+        // urlEditText.setText("https://files.example.com");
         urlEditText.requestFocus();
     }
 

@@ -3,6 +3,8 @@ package com.pydio.android.client.accounts;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Base64;
+import android.util.Log;
+
 
 import com.pydio.android.client.utils.Background;
 import com.pydio.sdk.core.auth.OauthConfig;
@@ -133,6 +135,7 @@ public class Accounts {
                 String jwt = response.getString();
                 this.authenticationCallback.handleToken(jwt);
             } catch (Exception e) {
+                Log.e("OAUTH2", "could not get authentication token", e);
                 e.printStackTrace();
                 this.authenticationCallback.onError("could not get authentication token", e.getMessage());
             }

@@ -164,9 +164,9 @@ public class OfflineService implements MergeActivityListener {
                 instance.stop();
             }
 
-            if (!isCellsVersion){
+            // if (!isCellsVersion){
                 instance = new OfflineService(session);
-            }
+            // }
         }
     }
 

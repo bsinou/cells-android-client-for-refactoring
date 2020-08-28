@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -955,7 +956,7 @@ public class Browser extends PydioDrawerActivity implements Listener, GUIContext
                 }, (v) -> copyShareLink(node)));
             }
 
-            if (wn.isSyncable()) {
+            if (wn.isSyncable() || this.session.server.versionName().contains("cells")) {
                 final int watchState = OfflineService.watchState(node.path());
 
                 boolean isUnderWatched = watchState == OfflineService.UNDER_A_WATCHED;
@@ -1113,10 +1114,10 @@ public class Browser extends PydioDrawerActivity implements Listener, GUIContext
     // Imports
     boolean selectForImports() {
         nodeMenuComponent.hide();
-        boolean permissionGranted = PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        boolean permissionGranted = PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
         if (!permissionGranted) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, IntentCode.authorizeImportFromStorage);
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, IntentCode.authorizeImportFromStorage);
             } else {
                 longShowMessage(R.string.manually_grant_storage_access);
             }
@@ -2413,6 +2414,7 @@ public class Browser extends PydioDrawerActivity implements Listener, GUIContext
         try {
             t = Token.decodeOauthJWT(jwt);
         } catch (ParseException e) {
+            Log.e("OAUTH2", "failed to decode JWT", e);
             e.printStackTrace();
             showMessage(this.getString(R.string.could_not_get_token));
             return;
@@ -2420,6 +2422,7 @@ public class Browser extends PydioDrawerActivity implements Listener, GUIContext
 
         JWT accessToken = JWT.parse(t.idToken);
         if (accessToken == null) {
+            Log.e("OAUTH2", "failed to decode idToken");
             showMessage(this.getString(R.string.could_not_decode_id_token));
             return;
         }

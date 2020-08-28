@@ -22,6 +22,7 @@ import com.pydio.android.client.R;
 import com.pydio.android.client.accounts.Accounts;
 import com.pydio.android.client.data.callback.SessionCompletion;
 import com.pydio.android.client.data.db.Database;
+import com.pydio.android.client.data.encoding.B64;
 import com.pydio.android.client.data.extensions.AndroidCellsClient;
 import com.pydio.android.client.data.metrics.Measurement;
 import com.pydio.android.client.gui.activities.UserCredentials;
@@ -183,6 +184,7 @@ public class Application extends android.app.Application {
             registerReceiver(restrictionsReceiver, restrictionsFilter);
         }
 
+        B64.set(new B64());
     }
 
     //***********************************

@@ -8,6 +8,9 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Log;
+
+import java.io.File;
 
 public class ContentResolver {
 
@@ -19,58 +22,68 @@ public class ContentResolver {
         }
 
 
-        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+        //final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
         // DocumentProvider
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
-            // ExternalStorageProvider
-            if (isExternalStorageDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":");
-                final String type = split[0];
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (DocumentsContract.isDocumentUri(context, uri)) {
+                // ExternalStorageProvider
+                if (isExternalStorageDocument(uri)) {
+                    final String docId = DocumentsContract.getDocumentId(uri);
+                    final String[] split = docId.split(":");
+                    final String type = split[0];
 
-                if ("primary".equalsIgnoreCase(type)) {
-                    return Environment.getExternalStorageDirectory() + "/" + split[1];
+                    if ("primary".equalsIgnoreCase(type)) {
+                        return Environment.getExternalStorageDirectory() + "/" + split[1];
+                    }
+
+                    // TODO handle non-primary volumes
                 }
+                // DownloadsProvider
+                else if (isDownloadsDocument(uri)) {
 
-                // TODO handle non-primary volumes
-            }
-            // DownloadsProvider
-            else if (isDownloadsDocument(uri)) {
+                    final String id = DocumentsContract.getDocumentId(uri);
+                    try {
+                        long intID = Long.parseLong(id);
+                        final Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), intID);
+                        return getDataColumn(context, contentUri, null, null);
+                    } catch (Exception ignore) {
+                    }
 
-                final String id = DocumentsContract.getDocumentId(uri);
-                try {
-                    long intID = Long.valueOf(id);
-                    final Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), intID);
-                    return getDataColumn(context, contentUri, null, null);
-                }catch (Exception ignore){}
+                    if (id.startsWith("raw:")) {
+                        String path = id.replace("raw:", "");
+                        if (new File(path).exists()) {
+                            return path;
+                        }
 
-                if(id.startsWith("raw:")){
-                    return id.replace("raw:", "");
+                        path = Uri.parse(id).getPath();
+                        Log.i("Content Resolver", path != null ? path : "");
+                        return path;
+                    }
+
                 }
+                // MediaProvider
+                else if (isMediaDocument(uri)) {
+                    final String docId = DocumentsContract.getDocumentId(uri);
+                    final String[] split = docId.split(":");
+                    final String type = split[0];
 
-            }
-            // MediaProvider
-            else if (isMediaDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":");
-                final String type = split[0];
+                    Uri contentUri = null;
+                    if ("image".equals(type)) {
+                        contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                    } else if ("video".equals(type)) {
+                        contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                    } else if ("audio".equals(type)) {
+                        contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                    }
 
-                Uri contentUri = null;
-                if ("image".equals(type)) {
-                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                } else if ("video".equals(type)) {
-                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                } else if ("audio".equals(type)) {
-                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                    final String selection = "_id=?";
+                    final String[] selectionArgs = new String[]{
+                            split[1]
+                    };
+
+                    return getDataColumn(context, contentUri, selection, selectionArgs);
                 }
-
-                final String selection = "_id=?";
-                final String[] selectionArgs = new String[] {
-                        split[1]
-                };
-
-                return getDataColumn(context, contentUri, selection, selectionArgs);
             }
         }
         // MediaStore (and general)
@@ -81,6 +94,7 @@ public class ContentResolver {
         else if ("file".equalsIgnoreCase(uri.getScheme())) {
             return uri.getPath();
         }
+
 
         return null;
     }
