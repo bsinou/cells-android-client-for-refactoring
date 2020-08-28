@@ -263,5 +263,10 @@
     <string name="disable">Disable</string>
     <string name="could_not_get_token">Could not get authentication info</string>
     <string name="could_not_decode_id_token">Could not decode token</string>
+    <string name="lost_conn_with_server">The application has lost connection with the server</string>
+    <string name="no_internet_conn">No internet connection</string>
+    <string name="problem_with_server_cert">Connection failed due to certificate problem.</string>
+    <string name="an_error_occurred">An error occurred</string>
+    <string name="could_not_reach_server">Could not reach server</string>
 
 </resources>
