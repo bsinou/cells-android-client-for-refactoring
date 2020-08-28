@@ -43,6 +43,7 @@ dependencies {
 
     // AndroidX and JetPack to ship version 29+ code to older devices
     implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
 
     // For the tests
     testImplementation 'junit:junit:4.13'
