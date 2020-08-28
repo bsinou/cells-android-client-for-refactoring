@@ -20,6 +20,13 @@ public class Session implements Serializable {
     public ServerNode server;
     public String user;
 
+    public Session() {
+    }
+
+    public Session(com.pydio.android.client.data.wrap.ServerNode serverNode) {
+        this.server = serverNode.getWrapped();
+    }
+
     public String idForCredentials() {
         String serverID = server.url().replace("://", "+").replace("/", "&");
         return String.format("%s@%s", user, serverID);
@@ -37,15 +44,18 @@ public class Session implements Serializable {
         return String.format("%s@%s", user, server.url());
     }
 
-    public String workspaceCacheID (String workspace) {
+    public String workspaceCacheID(String workspace) {
         return String.format("%s.%s", id(), workspace);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) return false;
-        if (o == this) return true;
-        if (!(o instanceof Session)) return false;
+        if (o == null)
+            return false;
+        if (o == this)
+            return true;
+        if (!(o instanceof Session))
+            return false;
         Session b = (Session) o;
 
         if (this.user != null && !this.user.equals(b.user)) {
@@ -66,11 +76,8 @@ public class Session implements Serializable {
             return false;
         }
 
-        return u != null &&
-                ou.getHost().equals(u.getHost()) &&
-                ou.getPath().equals(u.getPath()) &&
-                ou.getProtocol().equals(u.getProtocol()) &&
-                ou.getPort() == u.getPort();
+        return u != null && ou.getHost().equals(u.getHost()) && ou.getPath().equals(u.getPath())
+                && ou.getProtocol().equals(u.getProtocol()) && ou.getPort() == u.getPort();
     }
 
     public WorkspaceNode resolveNodeWorkspace(FileNode node) {
@@ -87,13 +94,13 @@ public class Session implements Serializable {
         return server.findWorkspaceById(id);
     }
 
-    //********************************************************************************
-    //                  DIRS
-    //********************************************************************************
+    // ********************************************************************************
+    // DIRS
+    // ********************************************************************************
     public String externalBaseFolderPath() {
         String path = Application.externalDir(null) + File.separator + user + File.separator + server.url();
         File f = new File(path);
-        if(!f.exists()) {
+        if (!f.exists()) {
             boolean result = f.mkdirs();
             if (!result) {
                 return null;
@@ -109,23 +116,23 @@ public class Session implements Serializable {
         String baseName = label;
         int i = label.lastIndexOf('.');
         if (i > 0) {
-            extension = "." + label.substring(i+1);
+            extension = "." + label.substring(i + 1);
             baseName = label.substring(0, i);
         }
 
         i = 0;
         File file = new File(downloadDir, label);
-        while(file.exists()) {
+        while (file.exists()) {
             i++;
             file = new File(downloadDir, baseName + "-" + i + extension);
         }
         return file.getPath();
     }
 
-    public String externalTempDir(){
-        String path = externalBaseFolderPath() + File.separator +  Application.TEMP_FOLDER;
+    public String externalTempDir() {
+        String path = externalBaseFolderPath() + File.separator + Application.TEMP_FOLDER;
         File file = new File(path);
-        if(!file.exists() && !file.mkdirs()){
+        if (!file.exists() && !file.mkdirs()) {
             return null;
         }
         return path;
@@ -134,7 +141,7 @@ public class Session implements Serializable {
     public String baseFolderPath() {
         String path = Application.baseDir().getPath() + File.separator + id();
         File f = new File(path);
-        if(!f.exists()){
+        if (!f.exists()) {
             boolean result = f.mkdirs();
             if (!result) {
                 return null;
@@ -143,12 +150,12 @@ public class Session implements Serializable {
         return f.getPath();
     }
 
-    public String workspacePath(String ws){
+    public String workspacePath(String ws) {
         final String sep = File.separator;
         String wsPath = baseFolderPath() + sep + ws;
 
         File file = new File(wsPath);
-        if(!file.exists() && !file.mkdirs()){
+        if (!file.exists() && !file.mkdirs()) {
             return null;
         }
         return wsPath;
@@ -159,7 +166,7 @@ public class Session implements Serializable {
         String downloadPath = baseFolderPath() + sep + ws + sep + f;
         File file = new File(downloadPath);
         File parent = file.getParentFile();
-        if(!parent.exists() && !file.getParentFile().mkdirs()){
+        if (!parent.exists() && !file.getParentFile().mkdirs()) {
             return null;
         }
         return downloadPath;
@@ -168,29 +175,33 @@ public class Session implements Serializable {
     public String cacheFolderPath() {
         String path = baseFolderPath() + File.separator + ".cache";
         File file = new File(path);
-        if(!file.exists() && !file.mkdirs()){
+        if (!file.exists() && !file.mkdirs()) {
             return null;
         }
         return path;
     }
 
     public String tempFolderPath() {
-        String path = baseFolderPath() + File.separator +  ".temp";
+        String path = baseFolderPath() + File.separator + ".temp";
         File file = new File(path);
-        if(!file.exists() && !file.mkdirs()){
+        if (!file.exists() && !file.mkdirs()) {
             return null;
         }
         return path;
     }
 
-    public String offlineTaskFolder(String ws){
+    public String offlineTaskFolder(String ws) {
         final String sep = File.separator;
         String offlineFolderPath = baseFolderPath() + sep + ws + sep + ".offline";
         File file = new File(offlineFolderPath);
-        if(!file.exists() && !file.mkdirs()) {
+        if (!file.exists() && !file.mkdirs()) {
             return null;
         }
         return offlineFolderPath;
+    }
+
+    public String serverOriginalURL() {
+        return server.getOriginalURL();
     }
 
 }

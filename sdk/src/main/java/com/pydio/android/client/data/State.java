@@ -3,7 +3,7 @@ package com.pydio.android.client.data;
 
 import androidx.annotation.NonNull;
 
-import com.pydio.sdk.core.common.callback.StringCompletion;
+import com.pydio.android.client.data.callback.StringResultCompletion;
 
 import java.io.Serializable;
 
@@ -11,9 +11,9 @@ public class State implements Serializable {
     public String session;
     public String workspace;
 
-    private StringCompletion saver;
+    private StringResultCompletion saver;
 
-    public void setSaver(StringCompletion s){
+    public void setSaver(StringResultCompletion s){
         this.saver = s;
     }
 

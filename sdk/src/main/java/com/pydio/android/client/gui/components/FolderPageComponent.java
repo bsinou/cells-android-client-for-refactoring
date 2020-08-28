@@ -21,6 +21,7 @@ import com.pydio.android.client.accounts.AuthenticationEventHandler;
 import com.pydio.android.client.data.Display;
 import com.pydio.android.client.data.PydioAgent;
 import com.pydio.android.client.data.Session;
+import com.pydio.sdk.core.Client;
 import com.pydio.sdk.core.auth.jwt.JWT;
 import com.pydio.android.client.data.db.Database;
 import com.pydio.android.client.data.images.ThumbLoader;
@@ -59,7 +60,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class FolderPageComponent extends BrowserPage implements AuthenticationEventHandler, EventHandler, NodeListAdapter.ImageThumbLoader, ViewDataBinder {
+public class FolderPageComponent extends BrowserPage
+        implements AuthenticationEventHandler, EventHandler, NodeListAdapter.ImageThumbLoader, ViewDataBinder {
 
     final private Object syncToken = 0;
 
@@ -131,7 +133,6 @@ public class FolderPageComponent extends BrowserPage implements AuthenticationEv
         recyclerView.getLayoutParams().width = GridLayout.LayoutParams.MATCH_PARENT;
         super.setWidth(width);
     }
-
 
     // Utils
     private String workspaceSlug() {
@@ -222,7 +223,6 @@ public class FolderPageComponent extends BrowserPage implements AuthenticationEv
             thumbsRequests.clear();
             thumbsMemoryCache.clear();
         }
-
 
         String slug;
         if (state.node.type() == Node.TYPE_WORKSPACE) {
@@ -417,7 +417,7 @@ public class FolderPageComponent extends BrowserPage implements AuthenticationEv
             this.recyclerView.setLayoutManager(layoutManager);
             this.adapter.update(dataSet);
             this.swipeRefreshLayout.setRefreshing(false);
-            if (pollTask == null) {
+            if (pollTask == null || pollTask.taskDone()) {
                 pollTask = Background.go(this::poll);
             }
         });
@@ -556,31 +556,60 @@ public class FolderPageComponent extends BrowserPage implements AuthenticationEv
         stopRequested = false;
         String workspaceSlug = workspaceSlug();
         final PydioAgent agent = new PydioAgent(this.state.session);
+        int remainingAttempts = 3;
 
-        while (this.pollTask != null && !stopRequested && !pollTask.taskDone()) {
+        Context ctx = this.state.activityContext;
+        final Client client = agent.client;
+
+        while (this.pollTask != null && !stopRequested && !pollTask.taskDone() && remainingAttempts > 0) {
+            remainingAttempts--;
             List<Node> currentList = this.dataSet.copy();
             List<Node> nodes = new ArrayList<>();
+
             try {
-                agent.client.ls(workspaceSlug, this.state.node.path(), nodes::add);
+                client.ls(workspaceSlug, this.state.node.path(), nodes::add);
+
             } catch (SDKException e) {
-                if (e.code == 401) {
-                    if (!this.state.session.server.supportsOauth()) {
-                        Database.deleteToken(state.session.tokenKey());
-                    }
-                    if (this.agent.supportOAuth()) {
-                        this.stopRequested = true;
-                        OauthConfig cfg = OauthConfig.fromJSON(this.agent.session.server.getOIDCInfo(), "");
-                        Accounts.manager.authorize(cfg, this);
-                        return;
-                    } else {
-                        try {
-                            agent.client.ls(workspaceSlug, this.state.node.path(), nodes::add);
-                        } catch (SDKException e1) {
-                            continue;
+                switch (e.code) {
+                    case 401:
+                    case Code.authentication_required:
+                    case Code.authentication_with_captcha_required:
+                        if (this.agent.supportOAuth()) {
+                            this.stopRequested = true;
+                            OauthConfig cfg = OauthConfig.fromJSON(this.agent.session.server.getOIDCInfo(), "");
+                            Accounts.manager.authorize(cfg, this);
+                            return;
                         }
-                    }
-                } else {
-                    continue;
+
+                        if (e.code == Code.authentication_with_captcha_required) {
+                            this.state.guiContext.onAuthenticationRequired(FolderPageComponent.this::poll);
+                            return;
+                        }
+
+                        Database.deleteToken(state.session.tokenKey());
+                        continue;
+
+                    case Code.unreachable_host:
+                    case Code.con_failed:
+                    case Code.con_closed:
+                    case Code.no_internet:
+                        FolderPageComponent.this.showMessage(ctx.getString(R.string.could_not_reach_server));
+                        Threading.sleep(5000);
+                        continue;
+
+                    case Code.ssl_error:
+                    case Code.tls_init:
+                        FolderPageComponent.this.showMessage(
+                                ctx.getString(R.string.problem_with_server_cert) + " " + e.getLocalizedMessage());
+                        return;
+
+                    default:
+                        String message = e.getMessage();
+                        if (message != null) {
+                            FolderPageComponent.this.showMessage(
+                                    ctx.getString(R.string.an_error_occurred) + " " + e.getLocalizedMessage());
+                        }
+                        return;
                 }
             }
 
@@ -672,14 +701,13 @@ public class FolderPageComponent extends BrowserPage implements AuthenticationEv
                     }
                 }
 
-                this.onDeleted(deleted.toArray(new Node[]{}));
-                this.onUpdated(updated.toArray(new Node[]{}));
-                this.onCreated(added.toArray(new Node[]{}));
+                this.onDeleted(deleted.toArray(new Node[] {}));
+                this.onUpdated(updated.toArray(new Node[] {}));
+                this.onCreated(added.toArray(new Node[] {}));
             }
             Threading.sleep(interval);
             interval = 1500;
         }
-        Log.i("Poll", "done");
     }
 
     private void onClick(View view, Node node) {
@@ -938,7 +966,6 @@ public class FolderPageComponent extends BrowserPage implements AuthenticationEv
                 this.dataSet.update(node, node);
                 Cache.update(cacheWorkspace(node), this.state.node.path(), node.label(), node);
 
-
                 View view = getNodeView(node);
                 if (view == null) {
                     return;
@@ -1069,10 +1096,10 @@ public class FolderPageComponent extends BrowserPage implements AuthenticationEv
             return;
         }
 
-        t.expiry = System.currentTimeMillis()/1000 + t.expiry;
+        t.expiry = System.currentTimeMillis() / 1000 + t.expiry;
         String url = this.agent.session.server.url();
 
-        t.subject = String.format("%s@%s", jwt.claims.name,  url);
+        t.subject = String.format("%s@%s", jwt.claims.name, url);
         Database.saveToken(t);
 
         Session session = new Session();
