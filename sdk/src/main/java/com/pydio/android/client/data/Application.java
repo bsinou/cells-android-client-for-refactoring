@@ -24,10 +24,12 @@ import com.pydio.android.client.data.callback.SessionCompletion;
 import com.pydio.android.client.data.db.Database;
 import com.pydio.android.client.data.encoding.B64;
 import com.pydio.android.client.data.extensions.AndroidCellsClient;
+import com.pydio.android.client.data.extensions.AndroidClientFactory;
 import com.pydio.android.client.data.metrics.Measurement;
 import com.pydio.android.client.gui.activities.UserCredentials;
 import com.pydio.android.client.utils.Background;
 import com.pydio.sdk.core.ApplicationData;
+import com.pydio.sdk.core.ClientFactory;
 import com.pydio.sdk.core.PydioCells;
 import com.pydio.sdk.core.common.callback.Completion;
 import com.pydio.sdk.core.common.errors.Error;
@@ -160,7 +162,8 @@ public class Application extends android.app.Application {
             String id = login + "@" + (url.replace("://", "+").replace("/", "&"));
             return Database.password(id);
         };
-        PydioCells.registerFactory(AndroidCellsClient::new);
+        ClientFactory.register(new AndroidClientFactory());
+
         sessions = Database.listSessions();
         try {
             PackageInfo pInfo = getApplicationContext().getPackageManager().getPackageInfo(getPackageName(), 0);

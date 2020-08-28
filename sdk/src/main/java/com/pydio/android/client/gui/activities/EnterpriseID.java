@@ -22,6 +22,7 @@ import com.pydio.android.client.gui.components.ConfirmDialogComponent;
 import com.pydio.android.client.gui.dialogs.models.DialogData;
 import com.pydio.android.client.utils.Background;
 import com.pydio.sdk.core.Client;
+import com.pydio.sdk.core.ClientFactory;
 import com.pydio.sdk.core.common.callback.RegistryItemHandler;
 import com.pydio.sdk.core.common.errors.Code;
 import com.pydio.sdk.core.common.errors.Error;
@@ -154,13 +155,13 @@ public class EnterpriseID  extends AppCompatActivity {
                     }
                 } else {
                     showMessage("failed to get server info");
-                    //todo: handle properly error code
+                    // TODO: handle properly error code
                 }
                 return;
             }
 
 
-            Client client = Client.get(server);
+            Client client = ClientFactory.get().Client(server);
             try {
                 client.downloadServerRegistry(new RegistryItemHandler() {
                     @Override

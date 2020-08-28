@@ -15,6 +15,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.pydio.android.client.R;
 import com.pydio.android.client.accounts.Accounts;
 import com.pydio.android.client.accounts.AuthenticationEventHandler;
+import com.pydio.sdk.core.ClientFactory;
 import com.pydio.sdk.core.auth.OauthConfig;
 import com.pydio.android.client.data.Application;
 import com.pydio.android.client.data.Connectivity;
@@ -186,7 +187,7 @@ public class ServerURL extends AppCompatActivity implements AuthenticationEventH
             }
 
 
-            Client client = Client.get(server);
+            Client client = ClientFactory.get().Client(server);
             try {
                 client.downloadServerRegistry(new RegistryItemHandler() {
                     @Override

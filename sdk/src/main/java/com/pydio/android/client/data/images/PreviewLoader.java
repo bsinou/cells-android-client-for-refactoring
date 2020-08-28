@@ -17,6 +17,7 @@ import com.pydio.android.client.services.Cache;
 import com.pydio.android.client.utils.Background;
 import com.pydio.android.client.utils.Task;
 import com.pydio.sdk.core.Client;
+import com.pydio.sdk.core.ClientFactory;
 import com.pydio.sdk.core.Pydio;
 import com.pydio.sdk.core.common.errors.SDKException;
 import com.pydio.sdk.core.model.Node;
@@ -191,7 +192,7 @@ public class PreviewLoader {
         }
 
         if (r.session != null) {
-            Client client = Client.get(r.session.server);
+            Client client = ClientFactory.get().Client(r.session.server);
             client.setTokenStore(Database::saveToken);
             client.setTokenProvider(Database::getToken);
             AppCredentials credentials = new AppCredentials(r.session.server.url());

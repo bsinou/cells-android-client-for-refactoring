@@ -9,6 +9,7 @@ import com.pydio.android.client.data.db.Database;
 import com.pydio.android.client.utils.Task;
 import com.pydio.android.client.utils.Threading;
 import com.pydio.sdk.core.Client;
+import com.pydio.sdk.core.ClientFactory;
 import com.pydio.sdk.core.common.callback.Completion;
 import com.pydio.sdk.core.common.callback.MessageCompletion;
 import com.pydio.sdk.core.common.callback.ProgressListener;
@@ -374,7 +375,7 @@ public class Transfer {
     private void runDownload(Completion completion) {
         Session session = Application.findSession(this.session);
 
-        Client client = Client.get(session.server);
+        Client client = ClientFactory.get().Client(session.server);
         client.setTokenProvider(Database::getToken);
         client.setTokenStore(Database::saveToken);
         AppCredentials credentials = new AppCredentials(session.server.url());
@@ -392,7 +393,7 @@ public class Transfer {
     private void runUpload(MessageCompletion completion) {
         Session session = Application.findSession(this.session);
 
-        Client client = Client.get(session.server);
+        Client client = ClientFactory.get().Client(session.server);
         client.setTokenProvider(Database::getToken);
         client.setTokenStore(Database::saveToken);
         AppCredentials credentials = new AppCredentials(session.server.url());

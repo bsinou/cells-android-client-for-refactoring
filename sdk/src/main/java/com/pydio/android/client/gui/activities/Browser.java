@@ -2427,7 +2427,7 @@ public class Browser extends PydioDrawerActivity implements Listener, GUIContext
             return;
         }
 
-        t.expiry = System.currentTimeMillis()/1000 + t.expiry;
+        t.expiry = System.currentTimeMillis()/1000  + t.expiry;
         String url = this.agent.session.server.url();
 
         t.subject = String.format("%s@%s", accessToken.claims.name,  url);

@@ -6,6 +6,7 @@ import com.pydio.android.client.data.db.Database;
 import com.pydio.android.client.utils.Threading;
 import com.pydio.sdk.core.Client;
 import com.pydio.sdk.core.Pydio8;
+import com.pydio.sdk.core.ClientFactory;
 import com.pydio.sdk.core.PydioCells;
 import com.pydio.sdk.core.model.Change;
 import com.pydio.sdk.sync.Error;
@@ -55,7 +56,7 @@ public class SyncMergeTask implements MergeActivityListener{
         this.localFs = new LocalFs("local", session.workspacePath(workspace), this.watchStore.getWatches());
         this.stopped = false;
 
-        Client client = Client.get(this.session.server);
+        Client client = ClientFactory.get().Client(this.session.server);
         client.setTokenStore(Database::saveToken);
         client.setTokenProvider(Database::getToken);
         AppCredentials credentials = new AppCredentials(this.session.server.url());
@@ -64,7 +65,8 @@ public class SyncMergeTask implements MergeActivityListener{
 
         Fs remoteFs;
         if (session.server.versionName().toLowerCase().contains("cells")) {
-            remoteFs = new CellsFs("cells-" + session.id(), (PydioCells) client, this.workspace);
+            //FIXME initialize with the stateManager
+            remoteFs = new CellsFs("cells-" + session.id(), (PydioCells) client, this.workspace, null);
         } else {
             remoteFs = new Pydio8Fs("pydio8-" + session.id(), (Pydio8) client, this.workspace);
         }

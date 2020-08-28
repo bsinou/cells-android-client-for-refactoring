@@ -7,6 +7,7 @@ import com.pydio.android.client.services.Connectivity;
 import com.pydio.android.client.utils.Background;
 import com.pydio.android.client.utils.Task;
 import com.pydio.sdk.core.Client;
+import com.pydio.sdk.core.ClientFactory;
 import com.pydio.sdk.core.Pydio;
 import com.pydio.sdk.core.common.callback.Completion;
 import com.pydio.sdk.core.common.callback.JSONCompletion;
@@ -36,7 +37,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import static com.pydio.sdk.core.Client.get;
 
 public class PydioAgent {
 
@@ -47,14 +47,14 @@ public class PydioAgent {
     public PydioAgent(ServerNode node){
         this.session = new Session();
         this.session.server = node;
-        this.client = Client.get(node);
+        this.client = ClientFactory.get().Client(node);
         this.client.setTokenProvider(Database::getToken);
         this.client.setTokenStore(Database::saveToken);
     }
 
     public PydioAgent(Session s) {
         this.session = s;
-        this.client = Client.get(s.server);
+        this.client = ClientFactory.get().Client(s.server);
         AppCredentials credentials = new AppCredentials(this.session.server.url());
         credentials.setLogin(session.user);
         this.client.setCredentials(credentials);
@@ -75,7 +75,7 @@ public class PydioAgent {
             serverNode = ServerNode.fromAddress(url);
             PydioAgent agent = new PydioAgent(serverNode);
             agent.session.user = user;
-            agent.client = get(serverNode);
+            agent.client = ClientFactory.get().Client(serverNode);
             agent.client.setTokenProvider(Database::getToken);
             agent.client.setTokenStore(Database::saveToken);
 

@@ -12,6 +12,7 @@ import com.pydio.android.client.services.Cache;
 import com.pydio.android.client.utils.Background;
 import com.pydio.android.client.utils.Threading;
 import com.pydio.sdk.core.Client;
+import com.pydio.sdk.core.ClientFactory;
 import com.pydio.sdk.core.Pydio;
 import com.pydio.sdk.core.common.errors.SDKException;
 import com.pydio.sdk.core.model.Node;
@@ -144,7 +145,7 @@ public class ThumbStore implements ThumbLoader {
         String thumbPath = this.session.cacheFolderPath() + File.separator + UUID.randomUUID().toString() + ".jpeg";
 
         if (this.session != null){
-            Client client = Client.get(this.session.server);
+            Client client = ClientFactory.get().Client(this.session.server);
             client.setTokenStore(Database::saveToken);
             client.setTokenProvider(Database::getToken);
             AppCredentials credentials = new AppCredentials(this.session.server.url());
@@ -157,7 +158,7 @@ public class ThumbStore implements ThumbLoader {
                     JSONObject json = new JSONObject(thumbsURLs);
                     for (Iterator<String> it = json.keys(); it.hasNext();) {
                         String k = it.next();
-                        int size = Integer.valueOf(k);
+                        int size = Integer.parseInt(k);
                         if(size > 0 && size >= r.width || size  >= r.height){
                             String url = json.getString(k);
 
@@ -180,19 +181,21 @@ public class ThumbStore implements ThumbLoader {
 
                 } else {
                     InputStream in = client.previewData(ws, r.node.path(), r.width);
-                    byte[] buffer = new byte[16384];
-                    OutputStream out = new FileOutputStream(thumbPath);
-                    for(;;){
-                        int n = in.read(buffer);
-                        if(n == -1) break;
-                        out.write(buffer, 0, n);
-                    }
+                    if (in != null) {
+                        byte[] buffer = new byte[16384];
+                        OutputStream out = new FileOutputStream(thumbPath);
+                        for(;;){
+                            int n = in.read(buffer);
+                            if(n == -1) break;
+                            out.write(buffer, 0, n);
+                        }
 
-                    io.close(in);
-                    io.close(out);
-                    Bitmap bmp = ImageBitmap.loadBitmap(thumbPath, r.width, r.height, r.width == r.height);
-                    ImageBitmap.storeBitmap(bmp, thumbPath);
-                    bitmap[0] = bmp;
+                        io.close(in);
+                        io.close(out);
+                        Bitmap bmp = ImageBitmap.loadBitmap(thumbPath, r.width, r.height, r.width == r.height);
+                        ImageBitmap.storeBitmap(bmp, thumbPath);
+                        bitmap[0] = bmp;
+                    }
                 }
 
                 if(bitmap[0] != null){
