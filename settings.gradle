@@ -5,7 +5,7 @@ rootProject.buildFileName = 'build.gradle'
 def timestamp = new Date().format( 'yyyyMMddHHmm' )
 println('[DEBUG] Starting init phase for ' + rootProject.name + ' at ' + timestamp)
 
-include ':sdk', ':app'
+include ':sdk', ':cells-app'
 
 /* Use custom names for the "build.gradle" file of child modules */
 rootProject.children.each {

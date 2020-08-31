@@ -27,20 +27,22 @@ dependencies {
 
 android {
 
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
-
-    lintOptions {
-        abortOnError false
-    }
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
         versionCode 1
         versionName "0.1.0"
 
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
         consumerProguardFiles 'consumer-rules.pro'
+    }
+
+
+    lintOptions {
+        abortOnError false
     }
 
     compileOptions {
@@ -137,8 +139,8 @@ def pomConfig = {
 }
 
 bintray {
-    user = bintrayUser
-    key = bintrayKey
+    user = rootProject.ext.bintrayUser
+    key = rootProject.ext.bintrayKey
 
     pkg {
         repo = 'cells'

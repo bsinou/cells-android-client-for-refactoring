@@ -20,18 +20,28 @@ plugins {
     id 'com.jfrog.bintray' version '1.8.5'
 }
 
-// This block encapsulates custom properties and makes them available to all
-// modules in the project.
-ext {
-    bintrayUser = System.getProperty("bintray.user")
-    bintrayKey = System.getProperty("bintray.key")
+// Retrieve local context
+def localPropertiesFile = rootProject.file("local.properties");
+def localProperties = new Properties();
+localProperties.load(new FileInputStream(localPropertiesFile));
 
-    githubUrl = 'https://github.com/bsinou/cells-android-client.git'
+// Expose custom properties to all modules in the project.
+    ext {
     version = '0.1.0'
+    githubUrl = 'https://github.com/bsinou/cells-android-client.git'
 
-    // Centralise dependency version
-    // cellsSdkJavaLibVersion = "0.1.3-dev.20200826"
+    // Centralize dependency version
     cellsSdkJavaLibVersion = "0.1.3-SNAPSHOT"
+
+    // Android specific constraints
+    minSdkVersion = 21
+    compileSdkVersion = 29
+    targetSdkVersion = 29
+    buildToolsVersion = "29.0.3"
+
+    // Credential management
+    bintrayUser = localProperties['bintray.user']
+    bintrayKey = localProperties['bintray.key']
 }
 
 allprojects {

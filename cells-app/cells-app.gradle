@@ -1,23 +1,76 @@
 apply plugin: 'com.android.application'
 
+// Module main parameters 
+def appID = "com.pydio.android.Client"
+def appName = "Cells"
+
+// TODO make this Windows compliant 
+// def basePath = Paths.get($rootDir, project.name)
+def basePath =  System.getProperty("user.dir") + "/" + project.name
+
+// Retrieve version info
+def versionProperties = new Properties();
+def versionPath = basePath + "/version.properties"
+versionProperties.load(new FileInputStream(rootProject.file(versionPath)));
+
+// Generate static files from templates 
+def generateStaticFiles (Properties versionProperties, String basePath, appName) {
+        
+    def versionName = versionProperties['version.name']
+    def versionCode = versionProperties['version.code']
+    def timestamp = new Date().format("yyyy.MM.dd")
+    def year = new Date().format("yyyy")
+    def templatePath = basePath + "/src/templates/about.html"
+    def targetPath = basePath + "/src/main/assets/about.html";
+    
+    def body = new File(templatePath).getText('UTF-8')
+    body = body.replaceAll("##APP_NAME##", appName)
+    body = body.replaceAll("##VERSION_NAME##", versionName)
+    body = body.replaceAll("##VERSION_CODE##", versionCode)
+    body = body.replaceAll("##VERSION_DATE##", timestamp)
+    body = body.replaceAll("##VERSION_YEAR##", year)
+    def aboutFile = new File(targetPath)
+    aboutFile.write(body)
+}
+
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    def vName = versionProperties['version.name']
+    def apkName = appName + "-" + vName + ".apk"
 
     defaultConfig {
-        applicationId "com.pydio.android.cells"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "0.1.1"
+        applicationId appID
+        versionName vName
+        versionCode versionProperties['version.code'] as int
+
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all {
+                variant ->
+                    variant.outputs.all {
+                        outputFileName = apkName
+                    }
+            }
+        }
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all {
+                variant ->
+                    variant.outputs.all {
+                        outputFileName = apkName
+                    }
+            }
         }
     }
 
@@ -30,7 +83,10 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    generateStaticFiles(versionProperties, basePath, appName)
 }
+
 
 dependencies {
 
@@ -56,38 +112,11 @@ dependencies {
 From Legacy Project
 TODO Understand and adapt
 
-android {
+ {
     ...
     def buildPropsFile = file('version.properties')
     if (buildPropsFile.canRead()) {
 
-        def buildProps = new Properties()
-        buildProps.load(new FileInputStream(buildPropsFile))
-
-        def id = buildProps['id']
-        def appName = buildProps['name']
-        def vCode = buildProps['version_code']
-        def vName = buildProps['version_name']
-        def date = new Date().format("yyyy.MM.dd")
-        def apkName = appName + " " + vName + "." + vCode + "[" + date + "].apk"
-        def minSDK = buildProps["min_sdk"]
-
-        def template = System.getProperty("user.dir") + "/pydio-cells/about_template.html"
-        def aboutPath = System.getProperty("user.dir") + "/pydio-cells/src/main/assets/about.html";
-        def contents = new File(template).getText('UTF-8')
-        contents = contents.replaceAll("##APP_NAME##", appName)
-        contents = contents.replaceAll("##VERSION_NAME##", vName)
-        contents = contents.replaceAll("##VERSION_CODE##", "" + vCode)
-        contents = contents.replaceAll("##VERSION_DATE##", date)
-        def aboutFile = new File(aboutPath)
-        aboutFile.write(contents)
-
-        defaultConfig {
-            applicationId id
-            versionName vName
-            versionCode vCode as int
-            minSdkVersion minSDK
-        }
 
         buildTypes {
             release {
