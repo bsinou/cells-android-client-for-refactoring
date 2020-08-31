@@ -21,9 +21,8 @@ plugins {
 }
 
 // Retrieve local context
-def localPropertiesFile = rootProject.file("local.properties");
 def localProperties = new Properties();
-localProperties.load(new FileInputStream(localPropertiesFile));
+localProperties.load(new FileInputStream(rootProject.file("local.properties")));
 
 // Expose custom properties to all modules in the project.
 ext {

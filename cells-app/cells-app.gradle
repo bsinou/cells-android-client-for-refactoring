@@ -4,15 +4,6 @@ apply plugin: 'com.android.application'
 def appID = "com.pydio.android.Client"
 def appName = "Cells"
 
-// TODO make this Windows compliant 
-// def basePath = Paths.get($rootDir, project.name)
-def basePath =  System.getProperty("user.dir") + "/" + project.name
-
-// Retrieve version info
-def versionProperties = new Properties();
-def versionPath = basePath + "/version.properties"
-versionProperties.load(new FileInputStream(rootProject.file(versionPath)));
-
 // Generate static files from templates 
 def generateStaticFiles (Properties versionProperties, String basePath, appName) {
         
@@ -38,6 +29,11 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
+    // Retrieve version info
+    // TODO make various paths Windows compliant 
+    def basePath =  "${project.projectDir}"
+    def versionProperties = new Properties();
+    versionProperties.load(new FileInputStream(basePath + "/version.properties"));
     def vName = versionProperties['version.name']
     def apkName = appName + "-" + vName + ".apk"
     generateStaticFiles(versionProperties, basePath, appName)
@@ -85,6 +81,18 @@ android {
         abortOnError false
     }
 
+// TODO Double check this and re-eneable if necessary
+//   packagingOptions {
+//             exclude 'META-INF/DEPENDENCIES'
+//             exclude 'META-INF/LICENSE'
+//             exclude 'META-INF/LICENSE.txt'
+//             exclude 'META-INF/license.txt'
+//             exclude 'META-INF/NOTICE'
+//             exclude 'META-INF/NOTICE.txt'
+//             exclude 'META-INF/notice.txt'
+//             exclude 'META-INF/ASL2.0'
+//         }
+
 }
 
 
@@ -107,57 +115,3 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
-/*
-
-From Legacy Project
-TODO Understand and adapt
-
- {
-    ...
-    def buildPropsFile = file('version.properties')
-    if (buildPropsFile.canRead()) {
-
-
-        buildTypes {
-            release {
-                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-                applicationVariants.all {
-                    variant ->
-                        variant.outputs.all {
-                            outputFileName = apkName
-                        }
-                }
-            }
-            debug {
-                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-                applicationVariants.all {
-                    variant ->
-                        variant.outputs.all {
-                            outputFileName = apkName
-                        }
-                }
-            }
-        }
-
-        packagingOptions {
-            exclude 'META-INF/DEPENDENCIES'
-            exclude 'META-INF/LICENSE'
-            exclude 'META-INF/LICENSE.txt'
-            exclude 'META-INF/license.txt'
-            exclude 'META-INF/NOTICE'
-            exclude 'META-INF/NOTICE.txt'
-            exclude 'META-INF/notice.txt'
-            exclude 'META-INF/ASL2.0'
-        }
-    }
-
-
-    lintOptions {
-        checkReleaseBuilds false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
-        abortOnError false
-    }
-}
-
-*/

@@ -2,6 +2,10 @@
 .classpath
 .gradle/
 build
+
+cells-app/.classpath
+cells-app/build
+cells-app/libs
 sdk/build
 sdk/libs
 sdk/.classpath
@@ -14,7 +18,9 @@ sdk/.classpath
 .project
 sdk/.project
 sdk/*.iml
-app/.project
-app/*.iml
+cells-app/.project
+cells-app/*.iml
+
+# This file contains your sensitive information. Do *NOT* push it in your CVS.
 local.properties
 
