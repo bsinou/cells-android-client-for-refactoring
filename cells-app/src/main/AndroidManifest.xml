@@ -57,7 +57,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="org.sinou.com.pydio.android.cells.app"
+            android:authorities="org.sinou.com.pydio.android.app"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/shared_paths"/>

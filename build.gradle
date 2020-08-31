@@ -26,7 +26,7 @@ def localProperties = new Properties();
 localProperties.load(new FileInputStream(localPropertiesFile));
 
 // Expose custom properties to all modules in the project.
-    ext {
+ext {
     version = '0.1.0'
     githubUrl = 'https://github.com/bsinou/cells-android-client.git'
 

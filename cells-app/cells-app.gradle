@@ -40,6 +40,7 @@ android {
 
     def vName = versionProperties['version.name']
     def apkName = appName + "-" + vName + ".apk"
+    generateStaticFiles(versionProperties, basePath, appName)
 
     defaultConfig {
         applicationId appID
@@ -84,7 +85,6 @@ android {
         abortOnError false
     }
 
-    generateStaticFiles(versionProperties, basePath, appName)
 }
 
 
