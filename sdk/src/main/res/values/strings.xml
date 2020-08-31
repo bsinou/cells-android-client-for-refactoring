@@ -8,8 +8,7 @@
     <string name="workspace_section_shared">Shared workspaces</string>
     <string name="workspace_section_default">Default workspaces</string>
 
-    <string name="splash_foot" translatable="false">© Abstrium SAS 2019</string>
-
+    <string name="splash_foot" translatable="false">© Abstrium SAS 2020</string>
 
     <string name="tag_share" translatable="false">share</string>
     <string name="tag_unshare" translatable="false">share</string>
