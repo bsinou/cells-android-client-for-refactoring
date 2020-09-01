@@ -434,7 +434,7 @@ public class LocalFS {
         BufferedInputStream origin = null;
         FileOutputStream dest = new FileOutputStream(output);
         ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
-        byte data[] = new byte[16384];
+        byte[] data = new byte[16384];
         for (int i = 0; i < files.length; i++) {
             // Log.v("Compress", "Adding: " + files[i]);
             FileInputStream fi = new FileInputStream(files[i]);
@@ -501,7 +501,7 @@ public class LocalFS {
         return new StatFs(path);
     }
 
-    private static String hexify(byte bytes[]) {
+    private static String hexify(byte[] bytes) {
         char[] hexDigits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
         StringBuffer buf = new StringBuffer(bytes.length * 2);

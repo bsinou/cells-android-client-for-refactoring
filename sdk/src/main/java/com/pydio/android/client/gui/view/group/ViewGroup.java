@@ -802,7 +802,7 @@ public class ViewGroup extends android.view.ViewGroup implements View.OnTouchLis
         for (int i = 0; i < count; i++) {
             View view = getChildAt(i);
 
-            int location[] = new int[2];
+            int[] location = new int[2];
             view.getLocationOnScreen(location);
             int viewX = location[0];
             int viewY = location[1];

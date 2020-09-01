@@ -21,16 +21,16 @@ plugins {
 }
 
 // Retrieve local context
-def localProperties = new Properties();
-localProperties.load(new FileInputStream(rootProject.file("local.properties")));
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
 // Expose custom properties to all modules in the project.
 ext {
-    version = '0.1.0'
+    version = '0.1.1-SNAPSHOT'
     githubUrl = 'https://github.com/bsinou/cells-android-client.git'
 
     // Centralize dependency version
-    cellsSdkJavaLibVersion = "0.1.3-SNAPSHOT"
+    cellsSdkJavaVersion = "0.1.3-SNAPSHOT"
 
     // Android specific constraints
     minSdkVersion = 21

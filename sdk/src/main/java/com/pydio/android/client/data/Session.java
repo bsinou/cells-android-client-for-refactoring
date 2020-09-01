@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class Session implements Serializable {
 
@@ -35,7 +36,7 @@ public class Session implements Serializable {
     public String id() {
         if (ID == null || "".equals(ID)) {
             String id = String.format("%s@%s", user, server.url());
-            ID = Hex.toString(id.getBytes(Charset.forName("UTF-8")));
+            ID = Hex.toString(id.getBytes(StandardCharsets.UTF_8));
         }
         return ID;
     }

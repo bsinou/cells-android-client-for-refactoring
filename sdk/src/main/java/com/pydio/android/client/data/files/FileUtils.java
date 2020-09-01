@@ -63,6 +63,6 @@ public class FileUtils {
             name = label.substring(0, index-1);
             ext = label.substring(index-1);
         }
-        return name + "_" + String.valueOf(lastModified) + ext;
+        return name + "_" + lastModified + ext;
     }
 }

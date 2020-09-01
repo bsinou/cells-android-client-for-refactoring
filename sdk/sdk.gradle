@@ -6,33 +6,14 @@ apply plugin: 'com.jfrog.bintray'
 // See https://github.com/bintray/gradle-bintray-plugin#step-7-define-artifacts-to-be-uploaded-to-bintray
 // apply 'java-library'
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation "com.pydio.cells:cells-sdk-java:${rootProject.ext.cellsSdkJavaLibVersion}"
-
-    implementation 'com.amazonaws:aws-android-sdk-s3:2.16.12'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.2.0'
-
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
-    implementation 'commons-codec:commons-codec:20041127.091804'
-
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-}
-
 android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        versionCode 1
-        versionName "0.1.0"
+        versionCode 25
+        versionName "0.1.3-SNAPSHOT"
 
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -74,8 +55,7 @@ afterEvaluate {
 
                 groupId 'com.pydio.cells'
                 artifactId 'cells-sdk-android'
-//                version = rootProject.ext.version
-                version '0.1.1'
+                version rootProject.ext.version
 
 /*
                 pom.withXml {
@@ -147,19 +127,35 @@ bintray {
         name = rootProject.name
         licenses = ['AGPL-V3']
         desc = 'The Cells SDK for Android provides Android specific libraries on top of the Cells SDK for Java.'
-        vcsUrl = githubUrl
+        vcsUrl = rootProject.ext.githubUrl
         websiteUrl = "https://pydio.com"
         publish = true
 
-
-        // Version info
         version {
             name = rootProject.ext.version
             desc = 'Refactor project: clean module, use latest gradle best practice...'
             released = new Date()
             vcsTag = 'v' + rootProject.ext.version
-            //attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
-        publications = ['release'] //, 'Sandbox'
+        publications = ['release']
     }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.pydio.cells:cells-sdk-java:${rootProject.ext.cellsSdkJavaVersion}"
+
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.16.12'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.2.0'
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
+    implementation 'commons-codec:commons-codec:20041127.091804'
+
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

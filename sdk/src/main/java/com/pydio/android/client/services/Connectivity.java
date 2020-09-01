@@ -58,7 +58,7 @@ public class Connectivity extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         ConnectivityManager conn = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = conn.getActiveNetworkInfo();
-        final int state[] = new int[1];
+        final int[] state = new int[1];
 
         if (networkInfo != null) {
             if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {

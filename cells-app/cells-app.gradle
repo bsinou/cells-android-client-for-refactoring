@@ -12,7 +12,7 @@ def generateStaticFiles (Properties versionProperties, String basePath, appName)
     def timestamp = new Date().format("yyyy.MM.dd")
     def year = new Date().format("yyyy")
     def templatePath = basePath + "/src/templates/about.html"
-    def targetPath = basePath + "/src/main/assets/about.html";
+    def targetPath = basePath + "/src/main/assets/about.html"
     
     def body = new File(templatePath).getText('UTF-8')
     body = body.replaceAll("##APP_NAME##", appName)
@@ -32,8 +32,8 @@ android {
     // Retrieve version info
     // TODO make various paths Windows compliant 
     def basePath =  "${project.projectDir}"
-    def versionProperties = new Properties();
-    versionProperties.load(new FileInputStream(basePath + "/version.properties"));
+    def versionProperties = new Properties()
+    versionProperties.load(new FileInputStream(basePath + "/version.properties"))
     def vName = versionProperties['version.name']
     def apkName = appName + "-" + vName + ".apk"
     generateStaticFiles(versionProperties, basePath, appName)
@@ -98,20 +98,17 @@ android {
 
 dependencies {
 
-    // local external dependencies from libs subfolder, unused
-    // implementation fileTree(dir: "libs", include: ["*.jar"])
-
     // Cells: the Java SDK and the Android Client
     implementation project(":sdk")
-    implementation "com.pydio.cells:cells-sdk-java:${rootProject.ext.cellsSdkJavaLibVersion}"
+    implementation "com.pydio.cells:cells-sdk-java:${rootProject.ext.cellsSdkJavaVersion}"
 
     // AndroidX and JetPack to ship version 29+ code to older devices
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.annotation:annotation:1.1.0'
 
     // For the tests
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
 
